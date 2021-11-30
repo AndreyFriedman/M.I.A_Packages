@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "54568313990",
+    "project_id": "miapackages",
+    "storage_bucket": "miapackages.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:54568313990:android:4c7066685a481e9c0b5d07",
+        "android_client_info": {
+          "package_name": "com.example.miapackages"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "54568313990-59435g12jn1hvujgnufd5b8racohdsl4.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBXc02hDce2P95pzxNYL0zVfkXacRuqMHU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "54568313990-59435g12jn1hvujgnufd5b8racohdsl4.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

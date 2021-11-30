@@ -1,14 +1,14 @@
-package com.example.myapplication;
+package com.example.miapackages;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 
-public class Manager extends AppCompatActivity {
+public class Driver extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
+        setContentView(R.layout.activity_driver);
     }
 }

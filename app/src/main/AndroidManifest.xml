@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.myapplication">
+    package="com.example.miapackages">
 
     <application
         android:allowBackup="true"
@@ -10,16 +10,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
-            android:name=".Client"
+            android:name="com.example.miapackages.Client"
             android:exported="false" />
         <activity
-            android:name=".Driver"
+            android:name="com.example.miapackages.Driver"
             android:exported="false" />
         <activity
-            android:name=".Manager"
+            android:name="com.example.miapackages.Manager"
             android:exported="false" />
         <activity
-            android:name=".MainActivity"
+            android:name="com.example.miapackages.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
