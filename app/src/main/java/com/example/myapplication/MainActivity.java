@@ -13,8 +13,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
     }
 
-    public void onSendMessage(View view){
+    public void onManager(View view){
         Intent intent = new Intent(this, Manager.class);
+        startActivity(intent);
+    }
+    public void onClient(View view){
+        Intent intent = new Intent(this, Client.class);
+        startActivity(intent);
+    }
+    public void onDriver(View view){
+        Intent intent = new Intent(this, Driver.class);
         startActivity(intent);
     }
 }

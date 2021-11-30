@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MyApplication">
         <activity
+            android:name=".Client"
+            android:exported="false" />
+        <activity
+            android:name=".Driver"
+            android:exported="false" />
+        <activity
+            android:name=".Manager"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>
