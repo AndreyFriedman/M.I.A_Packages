@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -13,8 +14,6 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.lang.Thread;
-import java.lang.Object;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,18 +23,13 @@ public class Manager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
-        System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
         FirebaseFirestore db = FirebaseFirestore.getInstance();
-        String prodName = "ball";
-        prodManagment(db, prodName, 10, 50, "nike");
-
     }
+
 
     protected void prodManagment(FirebaseFirestore db, String name, int amount, int price, String supp){
-
         isExist(db,name,amount,price,supp);
     }
-
     protected void isExist(FirebaseFirestore db, String name, int amount, int price, String supp){
 
         DocumentReference docRef = db.collection("items").document(name);
@@ -59,18 +53,34 @@ public class Manager extends AppCompatActivity {
         });
     }
     protected void addNewProduct(FirebaseFirestore db, String name, int amount, int price, String supp){
-
         Map<String, Object> prod = new HashMap<>();
-
         prod.put("amount", amount);
         prod.put("price", price);
         prod.put("supplier", supp);
-
         db.collection("items").document(name).set(prod)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
                     public void onSuccess(Void aVoid) {
                         System.out.println("DocumentSnapshot added with ID: ");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println("Error adding document" + e);
+                    }
+                });
+    }
+
+
+    protected void addDriver(FirebaseFirestore db , String username,String password) {
+        Map<String, String> driver = new HashMap<>();
+        driver.put(username, password);
+        db.collection("users").document("drivers").collection("drivers").add(driver)
+                .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                    @Override
+                    public void onSuccess(DocumentReference documentReference) {
+                        System.out.println("DocumentSnapshot added with ID: " + documentReference.getId());
                     }
                 })
                 .addOnFailureListener(new OnFailureListener() {
