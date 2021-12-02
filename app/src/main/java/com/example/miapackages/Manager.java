@@ -52,6 +52,7 @@ public class Manager extends AppCompatActivity {
 
         });
     }
+
     protected void addNewProduct(FirebaseFirestore db, String name, int amount, int price, String supp){
         Map<String, Object> prod = new HashMap<>();
         prod.put("amount", amount);
