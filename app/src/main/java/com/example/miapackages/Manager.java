@@ -14,6 +14,7 @@ import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import android.widget.EditText;
@@ -26,8 +27,8 @@ public class Manager extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager);
-
     }
+
 
     public void itemClick(View view){
         EditText name = (EditText)findViewById(R.id.editTextName);
@@ -94,10 +95,32 @@ public class Manager extends AppCompatActivity {
                     }
                 });
     }
+    public void deleteClick(View view){
+        EditText name = (EditText)findViewById(R.id.editTextNameDel);
+        String nameS = name.getText().toString();
+        System.out.println(nameS);
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        deleteItem(db, nameS);
+    }
+    protected void deleteItem(FirebaseFirestore db, String name){
+        db.collection("items").document(name)
+                .delete()
+                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                    @Override
+                    public void onSuccess(Void aVoid) {
+                        System.out.println( "DocumentSnapshot successfully deleted!");
+                    }
+                })
+                .addOnFailureListener(new OnFailureListener() {
+                    @Override
+                    public void onFailure(@NonNull Exception e) {
+                        System.out.println( "Error deleting document" + e);
+                    }
+                });
+    }
 
 
-    public void addDriver(View view)
-    {   //get the name and pass of the driver from editText
+    public void addDriver(View view){   //get the name and pass of the driver from editText
         EditText driver_neme_view = (EditText) findViewById(R.id.driver_name);
         String driverName = driver_neme_view.getText().toString();
         EditText driver_pass_view = (EditText) findViewById(R.id.driver_password);
@@ -108,8 +131,28 @@ public class Manager extends AppCompatActivity {
         driver.put(driverName, driverPass);
         db.collection("users").document("drivers").set(driver, SetOptions.merge());
     }
-    protected void removeDriver(FirebaseFirestore db , String username)
-    {
+    public void deleteDriver(View view) {
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
 
+        EditText driver_neme_view = (EditText) findViewById(R.id.delete_driver_name);
+        String driverName = driver_neme_view.getText().toString();
+
+        Map<String, Object> updates = new HashMap<>();
+        updates.put(driverName, FieldValue.delete());
+
+        DocumentReference docRef = db.collection("users").document("drivers");
+        docRef.update(updates)
+            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                @Override
+                public void onSuccess(Void aVoid) {
+                    System.out.println("DocumentSnapshot successfully deleted!");
+                }
+            })
+            .addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    System.out.println("Error deleting document" + e);
+                }
+            });
     }
 }
