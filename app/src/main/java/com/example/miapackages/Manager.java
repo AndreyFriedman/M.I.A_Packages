@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -29,6 +30,25 @@ public class Manager extends AppCompatActivity {
         FirebaseFirestore db = FirebaseFirestore.getInstance();
     }
 
+    public void itemClick(View view){
+        EditText name = (EditText)findViewById(R.id.editTextName);
+        String nameS = name.getText().toString();
+        EditText amount = (EditText)findViewById(R.id.editTextAmount);
+        int amountS = Integer.valueOf(amount.getText().toString());
+        EditText price = (EditText)findViewById(R.id.editTextPrice);
+        int priceS = Integer.valueOf(price.getText().toString());
+        EditText supplier = (EditText)findViewById(R.id.editTextSupplier);
+        String supplierS = supplier.getText().toString();
+
+        System.out.println(nameS);
+        System.out.println(amountS);
+        System.out.println(priceS);
+        System.out.println(supplierS);
+
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+        prodManagment(db, nameS, amountS, priceS, supplierS);
+    }
 
     protected void prodManagment(FirebaseFirestore db, String name, int amount, int price, String supp){
         isExist(db,name,amount,price,supp);
