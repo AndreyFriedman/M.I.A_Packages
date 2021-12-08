@@ -12,30 +12,44 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.SetOptions;
+
+import java.util.HashMap;
+import java.util.Map;
+
 public class Register extends AppCompatActivity {
 
-    EditText firstName;
-    EditText lastName;
+    EditText clientUserName;
+    EditText clientPassword;
     EditText address;
     EditText email;
     Button register;
 
+    String userName;
+    String password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        firstName = findViewById(R.id.firstName);
-        lastName = findViewById(R.id.lastName);
-        address = findViewById(R.id.address);
-        email = findViewById(R.id.email);
+        setContentView(R.layout.activity_register);
     }
 
 
     public void onRegister(View view){
-        Intent intent = new Intent(this, Client.class);
-        if(checkDataEntered())
-            startActivity(intent);
+        clientUserName =(EditText) findViewById(R.id.clientUserName);
+        clientPassword = (EditText)findViewById(R.id.clientPassword);
+        address =(EditText) findViewById(R.id.address);
+        email = (EditText)findViewById(R.id.email);
 
+        if(checkDataEntered())
+            userName = clientUserName.getText().toString();
+            password = clientPassword.getText().toString();
+            FirebaseFirestore db = FirebaseFirestore.getInstance();
+            Map<String, String> client = new HashMap<>();
+            client.put(userName, password);
+            db.collection("users").document("clients").set(client, SetOptions.merge());
+            Intent intent = new Intent(this, Client.class);
+            startActivity(intent);
     }
 
     boolean isEmail(EditText text) {
@@ -49,18 +63,18 @@ public class Register extends AppCompatActivity {
     }
 
     boolean checkDataEntered() {
-        if (isEmpty(firstName)) {
+        if (isEmpty(clientUserName)) {
             Toast t = Toast.makeText(this, "You must enter first name to register!", Toast.LENGTH_SHORT);
             t.show();
         }
 
-        if (isEmpty(lastName)) {
-            lastName.setError("Last name is required!");
+        if (isEmpty(clientPassword)) {
+            clientPassword.setError("Last name is required!");
         }
 
         if (isEmail(email) == false) {
             email.setError("Enter valid email!");
         }
-        return !isEmpty(lastName)&&(!isEmpty(firstName))&&isEmail(email);
+        return !isEmpty(clientPassword)&&(!isEmpty(clientUserName))&&isEmail(email);
     }
 }
