@@ -178,5 +178,19 @@
         app:layout_constraintTop_toBottomOf="@+id/delete_driver_name"
         tools:ignore="MissingConstraints" />
 
+    <!--    ////////////////////////////////////////////////////////////////////////////-->
+
+    <TextView
+        android:id="@+id/err"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="50dp"
+        android:layout_marginBottom="16dp"
+        android:text="An error acquired"
+        android:textColor="#FF0000"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>
