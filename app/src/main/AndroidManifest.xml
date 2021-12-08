@@ -13,6 +13,9 @@
             android:name="com.example.miapackages.Client"
             android:exported="false" />
         <activity
+            android:name="com.example.miapackages.Register"
+            android:exported="false" />
+        <activity
             android:name="com.example.miapackages.Driver"
             android:exported="false" />
         <activity
