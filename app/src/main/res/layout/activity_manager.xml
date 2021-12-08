@@ -140,4 +140,5 @@
         app:layout_constraintTop_toBottomOf="@+id/delete_driver_name"
         tools:ignore="MissingConstraints"
         tools:layout_editor_absoluteX="60dp" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
