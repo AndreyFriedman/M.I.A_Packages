@@ -2,10 +2,15 @@ package com.example.miapackages;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.Activity;
 import android.view.View;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -18,17 +23,107 @@ import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.SetOptions;
 import android.widget.EditText;
+import android.widget.ListView;
+import android.widget.Spinner;
+import android.widget.TextView;
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class Manager extends AppCompatActivity {
+public class Manager extends Activity implements AdapterView.OnItemSelectedListener {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_manager);
+        setContentView(R.layout.activity_manager2);
+
+        Spinner manager_options = (Spinner) findViewById(R.id.spinner);
+        manager_options.setOnItemSelectedListener(this);
     }
 
+    @Override
+    public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+        Spinner manager_options = (Spinner) findViewById(R.id.spinner);
+        String opt = String.valueOf(manager_options.getSelectedItem());
+
+        TextView editTextName = (TextView) findViewById(R.id.editTextName);
+        TextView editTextAmount = (TextView) findViewById(R.id.editTextAmount);
+        TextView editTextPrice = (TextView) findViewById(R.id.editTextPrice);
+        TextView editTextSupplier = (TextView) findViewById(R.id.editTextSupplier);
+        Button add_product = (Button) findViewById(R.id.add_product);
+
+        TextView editTextNameDel = (TextView) findViewById(R.id.editTextNameDel);
+        Button delete_product = (Button) findViewById(R.id.delete_product);
+
+        TextView driver_name = (TextView) findViewById(R.id.driver_name);
+        TextView driver_password = (TextView) findViewById(R.id.driver_password);
+        Button add_driver = (Button) findViewById(R.id.add_driver);
+
+        TextView delete_driver_name = (TextView) findViewById(R.id.delete_driver_name);
+        Button delete_driver = (Button) findViewById(R.id.delete_driver);
+
+        if (id == 0){
+            editTextName.setVisibility(View.VISIBLE);
+            editTextAmount.setVisibility(View.VISIBLE);
+            editTextPrice.setVisibility(View.VISIBLE);
+            editTextSupplier.setVisibility(View.VISIBLE);
+            add_product.setVisibility(View.VISIBLE);
+            editTextNameDel.setVisibility(View.INVISIBLE);
+            delete_product.setVisibility(View.INVISIBLE);
+            driver_name.setVisibility(View.INVISIBLE);
+            driver_password.setVisibility(View.INVISIBLE);
+            add_driver.setVisibility(View.INVISIBLE);
+            delete_driver_name.setVisibility(View.INVISIBLE);
+            delete_driver.setVisibility(View.INVISIBLE);
+        }
+        if (id == 1){
+            editTextName.setVisibility(View.INVISIBLE);
+            editTextAmount.setVisibility(View.INVISIBLE);
+            editTextPrice.setVisibility(View.INVISIBLE);
+            editTextSupplier.setVisibility(View.INVISIBLE);
+            add_product.setVisibility(View.INVISIBLE);
+            editTextNameDel.setVisibility(View.VISIBLE);
+            delete_product.setVisibility(View.VISIBLE);
+            driver_name.setVisibility(View.INVISIBLE);
+            driver_password.setVisibility(View.INVISIBLE);
+            add_driver.setVisibility(View.INVISIBLE);
+            delete_driver_name.setVisibility(View.INVISIBLE);
+            delete_driver.setVisibility(View.INVISIBLE);
+        }
+        if (id == 2){
+            editTextName.setVisibility(View.INVISIBLE);
+            editTextAmount.setVisibility(View.INVISIBLE);
+            editTextPrice.setVisibility(View.INVISIBLE);
+            editTextSupplier.setVisibility(View.INVISIBLE);
+            add_product.setVisibility(View.INVISIBLE);
+            editTextNameDel.setVisibility(View.INVISIBLE);
+            delete_product.setVisibility(View.INVISIBLE);
+            driver_name.setVisibility(View.VISIBLE);
+            driver_password.setVisibility(View.VISIBLE);
+            add_driver.setVisibility(View.VISIBLE);
+            delete_driver_name.setVisibility(View.INVISIBLE);
+            delete_driver.setVisibility(View.INVISIBLE);
+        }
+        if (id == 3){
+            editTextName.setVisibility(View.INVISIBLE);
+            editTextAmount.setVisibility(View.INVISIBLE);
+            editTextPrice.setVisibility(View.INVISIBLE);
+            editTextSupplier.setVisibility(View.INVISIBLE);
+            add_product.setVisibility(View.INVISIBLE);
+            editTextNameDel.setVisibility(View.INVISIBLE);
+            delete_product.setVisibility(View.INVISIBLE);
+            driver_name.setVisibility(View.INVISIBLE);
+            driver_password.setVisibility(View.INVISIBLE);
+            add_driver.setVisibility(View.INVISIBLE);
+            delete_driver_name.setVisibility(View.VISIBLE);
+            delete_driver.setVisibility(View.VISIBLE);
+        }
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> parent) {
+
+    }
 
     public void itemClick(View view){
         EditText name = (EditText)findViewById(R.id.editTextName);
@@ -39,6 +134,7 @@ public class Manager extends AppCompatActivity {
         int priceS = Integer.valueOf(price.getText().toString());
         EditText supplier = (EditText)findViewById(R.id.editTextSupplier);
         String supplierS = supplier.getText().toString();
+
 
         System.out.println(nameS);
         System.out.println(amountS);
@@ -155,4 +251,7 @@ public class Manager extends AppCompatActivity {
                 }
             });
     }
+
+
+
 }

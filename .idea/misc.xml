@@ -5,16 +5,16 @@
       <map>
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_client.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_driver.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_login.xml" value="0.19701086956521738" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.2269021739130435" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/drawable/button_gradient.xml" value="0.2703125" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/drawable/gradient.xml" value="0.2703125" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_manager.xml" value="0.14791666666666667" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_manager2.xml" value="0.33" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_register.xml" value="0.19701086956521738" />
         <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_client.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_driver.xml" value="0.20199275362318841" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_login.xml" value="0.25416666666666665" />
         <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_main.xml" value="0.4" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager.xml" value="0.4" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_register.xml" value="0.4" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2703125" />
+        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager.xml" value="0.1793478260869565" />
       </map>
     </option>
   </component>
@@ -23,12 +23,5 @@
   </component>
   <component name="ProjectType">
     <option name="id" value="Android" />
-  </component>
-  <component name="VisualizationToolProject">
-    <option name="state">
-      <ProjectState>
-        <option name="scale" value="0.4" />
-      </ProjectState>
-    </option>
   </component>
 </project>
