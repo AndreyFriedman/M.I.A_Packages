@@ -172,6 +172,7 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         });
     }
 
+
     protected void addNewProduct(FirebaseFirestore db, String name, int amount, int price, String supp){
         Map<String, Object> prod = new HashMap<>();
         prod.put("amount", amount);
