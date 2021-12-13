@@ -62,17 +62,15 @@ public class Register extends AppCompatActivity {
 
     boolean checkDataEntered() {
         if (isEmpty(clientUserName)) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
             clientUserName.setError("You must enter eMail to register!");
             return false;
         }
         if (!isEmail(clientUserName)){
-            System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
             clientUserName.setError("You must enter eMail to register!");
             return false;
         }
         if (isEmpty(clientPassword)) {
-            System.out.println("#######################################");
             clientPassword.setError("Password is required!");
             return false;
         }
