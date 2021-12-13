@@ -22,16 +22,6 @@ import com.google.firebase.firestore.QuerySnapshot;
 import java.util.ArrayList;
 import java.util.List;
 
-//public class Client extends AppCompatActivity {
-//
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_client);
-//
-//    }
-//}
-
 public class Client extends AppCompatActivity {
     ArrayList<Item> items;
 
@@ -42,15 +32,9 @@ public class Client extends AppCompatActivity {
 
         // Initialize contacts
         createContactsList();
-
-
-
     }
 
-
     protected void onCreate2(ArrayList<Item> items){
-
-
         // Lookup the recyclerview in activity layout
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
         // Create adapter passing in the sample user data
@@ -61,7 +45,6 @@ public class Client extends AppCompatActivity {
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
     }
-
 
 
     public ArrayList<Item> createContactsList() {
@@ -75,7 +58,7 @@ public class Client extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 System.out.println(document.getId() + " => " + document.getData());
-                                items.add(new Item(document.getId(),(String)document.get("supplier"),(int) ((Long)document.get("price") + 0),(int) ((Long)document.get("amount") + 0)));
+                                items.add(new Item(document.getId(), (String) document.get("supplier"), (int) ((Long) document.get("price") + 0), (int) ((Long) document.get("amount") + 0)));
                             }
                             onCreate2(items);
                         } else {
@@ -83,20 +66,15 @@ public class Client extends AppCompatActivity {
                         }
                     }
                 });
-        items.add(new Item("bap","bap",10,10));
-        items.add(new Item("tap","tap",150,10));
-        Item contact = items.get(0);
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(contact.getName());
-        System.out.println(contact.getAmount());
-        System.out.println(contact.getPrice());
-        System.out.println(contact.getSupplier());
         return items;
+    }
 
+    public void onAddCart(View view) {
 
-
+    }
 }
-static class Item {
+
+class Item {
     private int amountS = 0;
     private int priceS = 0;
     private String nameS = "abc";
@@ -121,14 +99,10 @@ static class Item {
     public int getAmount() {
         return amountS;
     }
-
-
-    }
 }
 
 class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
-
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder {
@@ -144,19 +118,20 @@ class ContactsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameT = (TextView) itemView.findViewById(R.id.item_name);
-            amountT = (TextView) itemView.findViewById(R.id.item_amount);
-            priceT = (TextView) itemView.findViewById(R.id.item_price);
-            suppT = (TextView) itemView.findViewById(R.id.item_supp);
+            nameT = itemView.findViewById(R.id.item_name);
+            amountT = itemView.findViewById(R.id.item_amount);
+            priceT = itemView.findViewById(R.id.item_price);
+            suppT = itemView.findViewById(R.id.item_supp);
 
         }
     }
-    private List<Client.Item> items;
+    private List<Item> items;
 
     // Pass in the contact array into the constructor
-    public ContactsAdapter(ArrayList<Client.Item> contacts) {
+    public ContactsAdapter(ArrayList<Item> contacts) {
         items = contacts;
     }
+
     @Override
     public ContactsAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         Context context = parent.getContext();
@@ -170,13 +145,11 @@ class ContactsAdapter extends
         return viewHolder;
     }
 
-
-
     // Involves populating data into the item through holder
     @Override
     public void onBindViewHolder(ContactsAdapter.ViewHolder holder, int position) {
         // Get the data model based on position
-        Client.Item contact = items.get(position);
+        Item contact = items.get(position);
 
         // Set item views based on your views and data model
         TextView name = holder.nameT;
@@ -188,9 +161,6 @@ class ContactsAdapter extends
         amount.setText(Integer.toString(contact.getAmount()));
         price.setText(Integer.toString(contact.getPrice()));
         supp.setText(contact.getSupplier());
-//        Button button = holder.messageButton;
-//        button.setText(contact.isOnline() ? "Message" : "Offline");
-//        button.setEnabled(contact.isOnline());
     }
 
     // Returns the total count of items in the list
