@@ -74,7 +74,6 @@ public class MainActivity extends AppCompatActivity {
             public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
                     Map<String,Object> cli = documentSnapshot.getData();
-                    cli.put("iaga","klw");
                     for ( String key : cli.keySet()) {
                         CharSequence userS = userName.getText().toString();
                         System.out.println("1111111111111111111 " + key);
