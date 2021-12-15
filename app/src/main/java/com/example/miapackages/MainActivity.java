@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Spinner;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -46,16 +47,35 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
     public void onLogin(View view){
-        String document = "clients";
-        searchInDataSet(document);
+        String document1 = "clients";
+        String document2 = "drivers";
+        String document3 = "managers";
         init();
+        if (typeUser.equals("client")) {
+            searchInDataSet(document1);
+        }
+        if (typeUser.equals("driver")) {
+            searchInDataSet(document2);
+        }
+        if (typeUser.equals("manager")) {
+            searchInDataSet(document3);
+        }
+        if (typeUser.equals("no type user selected")) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            password.setError("You need to choose type!");
+        }
     }
 
     EditText userName;
     EditText password;
+    String typeUser;
 
     public void init(){
+        Spinner type = (Spinner) findViewById(R.id.types);
+        typeUser = String.valueOf(type.getSelectedItem());
+        System.out.println("11112 " + typeUser);
         userName =findViewById(R.id.userName);
+
         CharSequence str1 = userName.getText().toString();
 
         System.out.println("11112 " + str1);
@@ -81,10 +101,10 @@ public class MainActivity extends AppCompatActivity {
                             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + key);
                             CharSequence passwordS = password.getText().toString();
                             if(cli.get(key).equals(passwordS)){
-                                loginsucces();//return true;
+                                loginSucces();//return true;
                             }
                             else{
-                                loginfailure();
+                                loginFailure();
                             }
                         }
                     }
@@ -100,16 +120,34 @@ public class MainActivity extends AppCompatActivity {
         return false;
     }
 
-    public void loginsucces(){
-        Intent intent = new Intent(this, Client.class);
-        startActivity(intent);
+    public void loginSucces() {
+        if (typeUser.equals("client")) {
+            Intent intent = new Intent(this, Client.class);
+            startActivity(intent);
+        }
+        if (typeUser.equals("driver")) {
+            Intent intent = new Intent(this, Driver.class);
+            startActivity(intent);
+        }
+        if (typeUser.equals("manager")) {
+            Intent intent = new Intent(this, Manager.class);
+            startActivity(intent);
+        }
     }
-    public void loginfailure(){
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        password.setError("You are not client please register");
+    public void loginFailure(){
+        if (typeUser.equals("client")) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            password.setError("Maybe you need to register?");
+        }
+        if (typeUser.equals("driver")) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            password.setError("Probably manager mistake");
+        }
+        if (typeUser.equals("manager")) {
+            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+            password.setError("You sure that you manager?");
+        }
     }
-
-
 
 
 }

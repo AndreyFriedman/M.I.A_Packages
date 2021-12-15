@@ -15,4 +15,12 @@
         <item>add driver</item>
         <item>delete driver</item>
     </string-array>
+
+    <string-array name="type_user_options">
+        <item>no type user selected</item>
+        <item>manager</item>
+        <item>driver</item>
+        <item>client</item>
+    </string-array>
+
 </resources>
