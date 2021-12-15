@@ -7,6 +7,48 @@
     android:visibility="visible"
     tools:context=".MainActivity">
 
+    <Button
+        android:id="@+id/driver"
+        android:layout_width="121dp"
+        android:layout_height="51dp"
+        android:onClick="onDriver"
+        android:text="driver"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/manager"
+        app:layout_constraintVertical_bias="0.085" />
+
+    <Button
+        android:id="@+id/client"
+        android:layout_width="121dp"
+        android:layout_height="51dp"
+        android:onClick="onClient"
+        android:text="client"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/driver"
+        app:layout_constraintVertical_bias="0.174" />
+
+    <Button
+        android:id="@+id/manager"
+        android:layout_width="121dp"
+        android:layout_height="51dp"
+        android:onClick="onManager"
+        android:text="manager"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/login_button"
+        app:layout_constraintVertical_bias="0.28" />
+
     <TextView
         android:id="@+id/textView"
         android:layout_width="181dp"
