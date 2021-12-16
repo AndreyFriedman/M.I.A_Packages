@@ -23,7 +23,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Client extends AppCompatActivity {
-    ArrayList<Item> items;
+    ArrayList<Item> items = new ArrayList<Item>();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -31,7 +32,7 @@ public class Client extends AppCompatActivity {
         setContentView(R.layout.activity_client);
 
         // Initialize contacts
-        createContactsList();
+        items = createContactsList();
     }
 
     protected void onCreate2(ArrayList<Item> items){
@@ -44,12 +45,11 @@ public class Client extends AppCompatActivity {
         // Set layout manager to position the items
         rvContacts.setLayoutManager(new LinearLayoutManager(this));
         // That's all!
+        
     }
 
 
     public ArrayList<Item> createContactsList() {
-        ArrayList<Item> items = new ArrayList<Item>();
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -68,8 +68,19 @@ public class Client extends AppCompatActivity {
                 });
         return items;
     }
+    // TODO: 16/12/2021
+    public void onDelBecauseCart(int pos) { // deleting amount of 1 from the database
+        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        System.out.println(items.size());
+        int amm = items.get(pos).getAmount();
+        if (amm >= 1)
+            amm--;
+        else
+            System.out.println("Cant add item");
 
-    public void onAddCart(View view) {
+        Manager man = new Manager();
+        man.addNewProduct(db,items.get(pos).getName(),amm,items.get(pos).getPrice(),items.get(pos).getSupplier());
+
 
     }
 }
@@ -105,7 +116,7 @@ class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
-    public class ViewHolder extends RecyclerView.ViewHolder {
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
         public TextView nameT,amountT,priceT,suppT;
@@ -118,11 +129,23 @@ class ContactsAdapter extends
             // to access the context from any ViewHolder instance.
             super(itemView);
 
-            nameT = itemView.findViewById(R.id.item_name);
-            amountT = itemView.findViewById(R.id.item_amount);
-            priceT = itemView.findViewById(R.id.item_price);
-            suppT = itemView.findViewById(R.id.item_supp);
+            this.nameT = itemView.findViewById(R.id.item_name);
+            this.amountT = itemView.findViewById(R.id.item_amount);
+            this.priceT = itemView.findViewById(R.id.item_price);
+            this.suppT = itemView.findViewById(R.id.item_supp);
 
+            itemView.setOnClickListener(this);
+
+        }
+
+
+        @Override
+        public void onClick(View view) { //when clicks on item
+            int position = getAdapterPosition(); // gets item position
+            System.out.println(items.get(position).getName());
+
+            Client bap = new Client();
+            bap.onDelBecauseCart(position );
         }
     }
     private List<Item> items;
@@ -168,6 +191,9 @@ class ContactsAdapter extends
     public int getItemCount() {
         return items.size();
     }
+
+
+
 }
 
 

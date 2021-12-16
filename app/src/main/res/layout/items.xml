@@ -32,14 +32,13 @@
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
-    <Button
+    <TextView
         android:id="@+id/message_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
-        android:textSize="10sp"
-        android:onClick="onAddCart"
+        android:textSize="20sp"
         android:text="add to cart"
         />
 </LinearLayout>
