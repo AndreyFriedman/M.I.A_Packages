@@ -1,6 +1,7 @@
 package com.example.miapackages;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,10 +21,13 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class Client extends AppCompatActivity {
-    ArrayList<Item> items = new ArrayList<Item>();
+    ArrayList<Item> items = new ArrayList<>();
+    Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
@@ -49,7 +53,7 @@ public class Client extends AppCompatActivity {
     }
 
 
-    public ArrayList<Item> createContactsList() {
+    protected ArrayList<Item> createContactsList() {
         db.collection("items")
                 .get()
                 .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
@@ -68,52 +72,21 @@ public class Client extends AppCompatActivity {
                 });
         return items;
     }
-    // TODO: 16/12/2021
-    public void onDelBecauseCart(int pos) { // deleting amount of 1 from the database
-        System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        System.out.println(items.size());
-        int amm = items.get(pos).getAmount();
-        if (amm >= 1)
-            amm--;
-        else
-            System.out.println("Cant add item");
 
-        Manager man = new Manager();
-        man.addNewProduct(db,items.get(pos).getName(),amm,items.get(pos).getPrice(),items.get(pos).getSupplier());
-
-
+    public void onCart(View view){
+        Intent intent = new Intent(this, Cart.class);
+        startActivity(intent);
     }
 }
 
-class Item {
-    private int amountS = 0;
-    private int priceS = 0;
-    private String nameS = "abc";
-    private String supplierS = "abc";
 
-    public Item(String name, String supp, int price, int amount) {
-        nameS = name;
-        supplierS = supp;
-        priceS = price;
-        amountS = amount;
-    }
-
-    public String getName() {
-        return nameS;
-    }
-    public String getSupplier() {
-        return supplierS;
-    }
-    public int getPrice() {
-        return priceS;
-    }
-    public int getAmount() {
-        return amountS;
-    }
-}
 
 class ContactsAdapter extends
         RecyclerView.Adapter<ContactsAdapter.ViewHolder> {
+    Data d = new Data();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
+
+
     // Provide a direct reference to each of the views within a data item
     // Used to cache the views within the item layout for fast access
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
@@ -143,9 +116,32 @@ class ContactsAdapter extends
         public void onClick(View view) { //when clicks on item
             int position = getAdapterPosition(); // gets item position
             System.out.println(items.get(position).getName());
+            String n = items.get(position).getName();
+            int amm = items.get(position).getAmount();
+            if(amm > 0){
+                items.get(position).setAmount(amm-1);
 
-            Client bap = new Client();
-            bap.onDelBecauseCart(position );
+                Map<String, Object> m = new HashMap<>();
+                m.put("amount", items.get(position).getAmount());
+                m.put("price", items.get(position).getPrice());
+                m.put("supplier", items.get(position).getSupplier());
+
+                d.setDoc(db,"items",items.get(position).getName(),m);
+                d.addDocCart(db,"i@g.c", items.get(position).getName(), items.get(position).getPrice(), items.get(position).getSupplier());
+            }
+            else{
+                System.out.println("there is no more items");
+
+                Map<String, Object> m = new HashMap<>();
+                m.put("amount", items.get(position).getAmount());
+                m.put("price", items.get(position).getPrice());
+                m.put("supplier", items.get(position).getSupplier());
+
+                d.setDoc(db,"items",items.get(position).getName(),m);
+            }
+
+
+
         }
     }
     private List<Item> items;

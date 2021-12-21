@@ -10,22 +10,15 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.firestore.DocumentReference;
-import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FieldValue;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.SetOptions;
 
 import java.util.HashMap;
 import java.util.Map;
 
 public class Manager extends Activity implements AdapterView.OnItemSelectedListener {
+    Data d = new Data();
+    FirebaseFirestore db = FirebaseFirestore.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -154,57 +147,9 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
             err.setVisibility(View.VISIBLE);
             return;
         }
-
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        prodManagment(db, nameS, amountS, priceS, supplierS);
+        d.addDocItem(db, nameS, amountS, priceS, supplierS);
     }
 
-    protected void prodManagment(FirebaseFirestore db, String name, int amount, int price, String supp){
-        isExist(db,name,amount,price,supp);
-    }
-    protected void isExist(FirebaseFirestore db, String name, int amount, int price, String supp){
-
-        DocumentReference docRef = db.collection("items").document(name);
-        docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
-            @Override
-            public void onComplete(@NonNull Task<DocumentSnapshot> task) {
-                if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    if (document.exists()) {
-                        System.out.println("DocumentSnapshot data: " + document.getData());
-                        addNewProduct(db,name, (int) ((Long)document.get("amount") + amount),price,supp);
-                    } else {
-                        System.out.println("No such document");
-                        addNewProduct(db,name,amount,price,supp);
-                    }
-                } else {
-                    System.out.println( "get failed with " + task.getException());
-                }
-            }
-
-        });
-    }
-
-
-    protected void addNewProduct(FirebaseFirestore db, String name, int amount, int price, String supp){
-        Map<String, Object> prod = new HashMap<>();
-        prod.put("amount", amount);
-        prod.put("price", price);
-        prod.put("supplier", supp);
-        db.collection("items").document(name).set(prod)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        System.out.println("DocumentSnapshot added with ID: ");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println("Error writing document"+e);
-                    }
-                });
-    }
     public void deleteClick(View view){
         String nameS = "";
         EditText name = (EditText)findViewById(R.id.editTextNameDel);
@@ -217,26 +162,8 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
             err.setVisibility(View.VISIBLE);
             return;
         }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        deleteItem(db, nameS);
+        d.delDoc(db,"items",nameS);
     }
-    protected void deleteItem(FirebaseFirestore db, String name){
-        db.collection("items").document(name)
-                .delete()
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        System.out.println( "DocumentSnapshot successfully deleted!");
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        System.out.println( "Error deleting document" + e);
-                    }
-                });
-    }
-
 
     public void addDriver(View view){   //get the name and pass of the driver from editText
         String driverName = "";
@@ -259,10 +186,9 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         }
 
         //add the driver to the data base
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
-        Map<String, String> driver = new HashMap<>();
+        Map<String, Object> driver = new HashMap<>();
         driver.put(driverName, driverPass);
-        db.collection("users").document("drivers").set(driver, SetOptions.merge());
+        d.setDoc(db,"users","drivers",driver);
     }
     public void deleteDriver(View view) {
         String driverName = "";
@@ -277,24 +203,9 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
             err.setVisibility(View.VISIBLE);
             return;
         }
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Map<String, Object> updates = new HashMap<>();
         updates.put(driverName, FieldValue.delete());
-
-        DocumentReference docRef = db.collection("users").document("drivers");
-        docRef.update(updates)
-            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                @Override
-                public void onSuccess(Void aVoid) {
-                    System.out.println("DocumentSnapshot successfully deleted!");
-                }
-            })
-            .addOnFailureListener(new OnFailureListener() {
-                @Override
-                public void onFailure(@NonNull Exception e) {
-                    System.out.println("Error deleting document" + e);
-                }
-            });
+        d.delField(db,"users","drivers",updates);
     }
 
 
