@@ -39,6 +39,6 @@
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
         android:textSize="20sp"
-        android:text="add to cart"
+        android:text=""
         />
 </LinearLayout>
