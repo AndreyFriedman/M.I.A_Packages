@@ -69,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
     EditText userName;
     EditText password;
     String typeUser;
+    String userString;
 
     public void init(){
         Spinner type = (Spinner) findViewById(R.id.types);
@@ -77,37 +78,55 @@ public class MainActivity extends AppCompatActivity {
         userName =findViewById(R.id.userName);
 
         CharSequence str1 = userName.getText().toString();
-
+        userString = (String)str1;
         System.out.println("11112 " + str1);
+        System.out.println("uS11112 " + userString);
         password =findViewById(R.id.password);
         CharSequence str2 = password.getText().toString();
 
         System.out.println("11112 " + str2);
     }
+    //String userString =
 
     public boolean searchInDataSet(String document){
         FirebaseFirestore db = FirebaseFirestore.getInstance();
         DocumentReference users = db.collection("users").document(document);
-        final Map<String, Object>[] client = new Map[]{new HashMap<>()};
         users.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
             public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
                 if(documentSnapshot.exists()){
                     Map<String,Object> cli = documentSnapshot.getData();
-                    for ( String key : cli.keySet()) {
-                        CharSequence userS = userName.getText().toString();
-                        System.out.println("1111111111111111111 " + key);
-                        if(userS.equals(key)){
-                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + key);
-                            CharSequence passwordS = password.getText().toString();
-                            if(cli.get(key).equals(passwordS)){
-                                loginSucces();//return true;
-                            }
-                            else{
-                                loginFailure();
+                    for (Map.Entry<String, Object> entry : cli.entrySet()) {
+                        CharSequence userN = userName.getText().toString();
+                        if (entry.getKey().equals(userN)){
+                            Map<String, Object> client = (Map<String, Object>) entry.getValue();
+                            for (Map.Entry<String, Object> e : client.entrySet()) {
+                                if (e.getKey().equals("password")) {
+                                    CharSequence passwordS = password.getText().toString();
+                                    if(e.getValue().toString().equals(passwordS)){
+                                        loginSucces();//return true;
+                                    }
+                                    else{
+                                        loginFailure();
+                                    }
+                                }
                             }
                         }
                     }
+//                    for ( String key : cli.keySet()) {
+//                        CharSequence userS = userName.getText().toString();
+//                        System.out.println("1111111111111111111 " + key);
+//                        if(userS.equals(key)){
+//                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + key);
+//                            CharSequence passwordS = password.getText().toString();
+//                            if(cli.get(key).equals(passwordS)){
+//                                loginSucces();//return true;
+//                            }
+//                            else{
+//                                loginFailure();
+//                            }
+//                        }
+//                    }
 
                 }
             }
@@ -123,6 +142,8 @@ public class MainActivity extends AppCompatActivity {
     public void loginSucces() {
         if (typeUser.equals("client")) {
             Intent intent = new Intent(this, Client.class);
+            intent.putExtra("clientName",userString);
+
             startActivity(intent);
         }
         if (typeUser.equals("driver")) {
@@ -147,6 +168,10 @@ public class MainActivity extends AppCompatActivity {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
             password.setError("You sure that you manager?");
         }
+    }
+
+    public String getClintName(){
+        return userString;
     }
 
 

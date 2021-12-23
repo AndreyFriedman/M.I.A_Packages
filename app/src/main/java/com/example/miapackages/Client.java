@@ -21,12 +21,13 @@ public class Client extends AppCompatActivity {
     ArrayList<Item> items = new ArrayList<>();
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    String clientName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_client);
-
+        Intent intent = getIntent();
+        clientName = intent.getStringExtra("clientName");
         // Initialize contacts
         items = createContactsList();
     }
@@ -43,7 +44,6 @@ public class Client extends AppCompatActivity {
         // That's all!
         
     }
-
 
     protected ArrayList<Item> createContactsList() {
         db.collection("items")
@@ -67,7 +67,7 @@ public class Client extends AppCompatActivity {
 
     public void onCart(View view){
         Intent intent = new Intent(this, Cart.class);
+        intent.putExtra("clientName",clientName);
         startActivity(intent);
     }
 }
-

@@ -16,6 +16,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -25,13 +27,16 @@ public class Cart extends AppCompatActivity {
     ArrayList<Item> items = new ArrayList<>();
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    String clientName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cart);
-
+        Intent intent = getIntent();
+        clientName = intent.getStringExtra("clientName");
+        System.out.println("11111111"+ clientName);
         items = createContactsList();
+        //items = createContactsList2();
 
     }
 
@@ -50,7 +55,7 @@ public class Cart extends AppCompatActivity {
     }
 
     protected ArrayList<Item> createContactsList() {
-        DocumentReference docRef = db.collection("cart").document("i@g.c");
+        DocumentReference docRef = db.collection("cart").document(clientName);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
             @Override
@@ -60,12 +65,8 @@ public class Cart extends AppCompatActivity {
                     DocumentSnapshot document = task.getResult();
                     if (document.exists()) {
                         System.out.println("DocumentSnapshot data: " + document.getData());
-                        document.getData().forEach(
-                                (key, value)
-                                        -> maps.put(key,value));
-                        maps.forEach(
-                                (key, value)
-                                        ->{
+                        document.getData().forEach((key, value)-> maps.put(key,value));
+                        maps.forEach((key, value)->{
                                     String pr;
                                     pr = maps.get(key).toString();
                                     int amountStart = pr.indexOf("amount=") + 7;
@@ -100,23 +101,8 @@ public class Cart extends AppCompatActivity {
         return items;
     }
 
-
     public void onClient(View view) {
         Intent intent = new Intent(this, Client.class);
         startActivity(intent);
     }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-

@@ -14,6 +14,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -22,7 +23,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class Register extends AppCompatActivity {
-
+    Data d = new Data();
     EditText clientUserName;
     EditText clientPassword;
     EditText address;
@@ -62,6 +63,7 @@ public class Register extends AppCompatActivity {
             client.put("Phone", cPhone);
             clientDetails.put(userName,client);
             DocumentReference users = db.collection("users").document("clients");
+            CollectionReference cart = db.collection("cart");//.document("clients");
             users.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>(){
                 @Override
                 public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
@@ -77,6 +79,10 @@ public class Register extends AppCompatActivity {
                         }
                     }
                     users.set(clientDetails);
+                    //cart.add(userName);
+                    HashMap<String,Object> temp = new HashMap<>();
+                    d.setDoc(db,"cart",userName,temp);
+
                 }
             });
             Intent intent = new Intent(this, MainActivity.class);
