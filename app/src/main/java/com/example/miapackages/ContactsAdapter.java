@@ -52,35 +52,48 @@ class ContactsAdapter extends
         @Override
         public void onClick(View view) { //when clicks on item
             int position = getAdapterPosition();// gets item position
+            int price = items.get(position).getPrice();
+            String name = items.get(position).getName();
+            int amm = items.get(position).getAmount();
+            System.out.println(amm);
             if (mazav == 1) {
 
-                System.out.println(items.get(position).getName());
-                String n = items.get(position).getName();
-                int amm = items.get(position).getAmount();
+                System.out.println(amm);
                 if (amm > 0) {
                     items.get(position).setAmount(amm - 1);
 
                     Map<String, Object> m = new HashMap<>();
-                    m.put("amount", items.get(position).getAmount());
-                    m.put("price", items.get(position).getPrice());
+                    m.put("amount", amm);
+                    m.put("price", price);
                     m.put("supplier", items.get(position).getSupplier());
 
-                    d.setDoc(db, "items", items.get(position).getName(), m);
-                    d.addDocCart(db, "i@g.c", items.get(position).getName(), items.get(position).getPrice(), items.get(position).getSupplier());
+                    d.setDoc(db, "items", name, m);
+                    d.addDocCart(db, "i@g.c", name, price, items.get(position).getSupplier(), 1);
                 } else {
                     System.out.println("there is no more items");
 
                     Map<String, Object> m = new HashMap<>();
-                    m.put("amount", items.get(position).getAmount());
-                    m.put("price", items.get(position).getPrice());
+                    m.put("amount", amm);
+                    m.put("price", price);
                     m.put("supplier", items.get(position).getSupplier());
 
-                    d.setDoc(db, "items", items.get(position).getName(), m);
+                    d.setDoc(db, "items", name, m);
                 }
             }
 
+            if (mazav == 2){
 
-            if (mazav == 2){}
+
+                items.get(position).setAmount(amm + 1);
+
+                Map<String, Object> m = new HashMap<>();
+                m.put("amount", amm);
+                m.put("price", price);
+                m.put("supplier", items.get(position).getSupplier());
+
+                d.addDocItem(db,name,1,price,items.get(position).getSupplier());
+                d.addDocCart(db, "i@g.c", name, price, items.get(position).getSupplier(), 2);
+            }
 
         }
     }

@@ -55,7 +55,7 @@ public class Data extends AppCompatActivity {
         });
     }
 
-    protected void addDocCart(FirebaseFirestore db, String userName, String name, int price, String supplier){
+    protected void addDocCart(FirebaseFirestore db, String userName, String name, int price, String supplier, int mazav){
 
         DocumentReference docRef = db.collection("cart").document(userName);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -92,11 +92,18 @@ public class Data extends AppCompatActivity {
                             int supplierEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
+                            if (mazav == 1){
+                                prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) + 1);
+                                prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) + Integer.parseInt(pr.substring(priceStart, priceEnd)));
+                            }
+                            if (mazav == 2){
+                                prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) - 1);
+                                prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) - Integer.parseInt(pr.substring(priceStart, priceEnd)));
+                            }
 
-                            prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) + 1);
                             prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
                             prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
-                            prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) + Integer.parseInt(pr.substring(priceStart, priceEnd)));
+
 
                         }
                         maps.put(name, prod);
