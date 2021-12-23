@@ -9,8 +9,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.HashMap;
@@ -21,11 +26,14 @@ public class Register extends AppCompatActivity {
     EditText clientUserName;
     EditText clientPassword;
     EditText address;
-    EditText email;
+    EditText phone;
     Button register;
 
     String userName;
     String password;
+    String cAddress;
+    String cPhone;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,14 +44,41 @@ public class Register extends AppCompatActivity {
     public void onRegister(View view){
         clientUserName =(EditText) findViewById(R.id.clientUserName);
         clientPassword = (EditText)findViewById(R.id.clientPassword);
+        address = (EditText) findViewById(R.id.ClientAddress);
+        phone = (EditText) findViewById(R.id.ClientPhone);
+
 
         if(checkDataEntered() == true){
             userName = clientUserName.getText().toString();
             password = clientPassword.getText().toString();
+            cAddress = address.getText().toString();
+            cPhone = phone.getText().toString();
+            HashMap<String,String> client = new HashMap<String,String>();
+            HashMap<String, Object> clientDetails = new HashMap<>();
             FirebaseFirestore db = FirebaseFirestore.getInstance();
-            Map<String, String> client = new HashMap<>();
-            client.put(userName, password);
-            db.collection("users").document("clients").set(client);
+            client.put("userName", userName);
+            client.put("password", password);
+            client.put("Address", cAddress);
+            client.put("Phone", cPhone);
+            clientDetails.put(userName,client);
+            DocumentReference users = db.collection("users").document("clients");
+            users.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>(){
+                @Override
+                public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
+                    if(documentSnapshot.exists()) {
+                        Map<String, Object> cli = documentSnapshot.getData();
+                        for (Map.Entry<String, Object> entry : cli.entrySet()) {
+                            Map<String, Object> detClient = (Map<String, Object>) entry.getValue();
+                            HashMap<String,String> detClient2 = new HashMap<String,String>();
+                            for (Map.Entry<String, Object> e : detClient.entrySet()) {
+                                detClient2.put(e.getKey(),e.getValue().toString());
+                            }
+                            clientDetails.put(entry.getKey(),detClient2);
+                        }
+                    }
+                    users.set(clientDetails);
+                }
+            });
             Intent intent = new Intent(this, MainActivity.class);
             startActivity(intent);
         }
