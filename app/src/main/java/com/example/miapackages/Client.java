@@ -36,7 +36,7 @@ public class Client extends AppCompatActivity {
         // Lookup the recyclerview in activity layout
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
         // Create adapter passing in the sample user data
-        ContactsAdapter adapter = new ContactsAdapter(items,1);
+        ContactsAdapter adapter = new ContactsAdapter(items,1, clientName);
         // Attach the adapter to the recyclerview to populate items
         rvContacts.setAdapter(adapter);
         // Set layout manager to position the items

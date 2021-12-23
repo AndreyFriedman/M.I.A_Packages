@@ -16,8 +16,6 @@ import com.google.android.gms.tasks.Task;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
-import com.google.firebase.firestore.QueryDocumentSnapshot;
-import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -28,6 +26,7 @@ public class Cart extends AppCompatActivity {
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String clientName;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +44,7 @@ public class Cart extends AppCompatActivity {
         // Lookup the recyclerview in activity layout
         RecyclerView rvContacts = (RecyclerView) findViewById(R.id.rvContacts);
         // Create adapter passing in the sample user data
-        ContactsAdapter adapter = new ContactsAdapter(items, 2);
+        ContactsAdapter adapter = new ContactsAdapter(items, 2, clientName);
         // Attach the adapter to the recyclerview to populate items
         rvContacts.setAdapter(adapter);
         // Set layout manager to position the items
@@ -103,6 +102,7 @@ public class Cart extends AppCompatActivity {
 
     public void onClient(View view) {
         Intent intent = new Intent(this, Client.class);
+        intent.putExtra("clientName",clientName);
         startActivity(intent);
     }
 }

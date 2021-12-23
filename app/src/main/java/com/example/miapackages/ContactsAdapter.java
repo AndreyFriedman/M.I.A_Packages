@@ -68,7 +68,7 @@ class ContactsAdapter extends
                     m.put("supplier", items.get(position).getSupplier());
 
                     d.setDoc(db, "items", name, m);
-                    d.addDocCart(db, "i@g.c", name, price, items.get(position).getSupplier(), 1);
+                    d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 1);
                 } else {
                     System.out.println("there is no more items");
 
@@ -92,18 +92,20 @@ class ContactsAdapter extends
                 m.put("supplier", items.get(position).getSupplier());
 
                 d.addDocItem(db,name,1,price,items.get(position).getSupplier());
-                d.addDocCart(db, "i@g.c", name, price, items.get(position).getSupplier(), 2);
+                d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 2);
             }
 
         }
     }
     private List<Item> items;
     private int mazav;
+    private String clientName;
 
     // Pass in the contact array into the constructor
-    public ContactsAdapter(ArrayList<Item> contacts, int i) {
+    public ContactsAdapter(ArrayList<Item> contacts, int i, String clientNameTemp) {
         items = contacts;
         mazav = i;
+        clientName = clientNameTemp;
     }
 
     @Override
