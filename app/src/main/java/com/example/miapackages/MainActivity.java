@@ -46,24 +46,26 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, Register.class);
         startActivity(intent);
     }
-    public void onLogin(View view){
-        String document1 = "clients";
-        String document2 = "drivers";
-        String document3 = "managers";
-        init();
-        if (typeUser.equals("client")) {
-            searchInDataSet(document1);
-        }
-        if (typeUser.equals("driver")) {
-            searchInDataSet(document2);
-        }
-        if (typeUser.equals("manager")) {
-            searchInDataSet(document3);
-        }
-        if (typeUser.equals("no type user selected")) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            password.setError("You need to choose type!");
-        }
+    public void login(View view){
+        Intent intent = new Intent(this, Login.class);
+        startActivity(intent);
+//        String document1 = "clients";
+//        String document2 = "drivers";
+//        String document3 = "managers";
+//        init();
+//        if (typeUser.equals("client")) {
+//            searchInDataSet(document1);
+//        }
+//        if (typeUser.equals("driver")) {
+//            searchInDataSet(document2);
+//        }
+//        if (typeUser.equals("manager")) {
+//            searchInDataSet(document3);
+//        }
+//        if (typeUser.equals("no type user selected")) {
+//            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            password.setError("You need to choose type!");
+//        }
     }
 
     EditText userName;

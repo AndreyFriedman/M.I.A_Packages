@@ -5,88 +5,99 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:visibility="visible"
+    android:background="@drawable/mainbackground"
     tools:context=".MainActivity">
 
-    <Button
-        android:id="@+id/driver"
-        android:layout_width="121dp"
-        android:layout_height="51dp"
-        android:onClick="onDriver"
-        android:text="driver"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/manager"
-        app:layout_constraintVertical_bias="0.085" />
+    <!--    <Button-->
+<!--        android:id="@+id/driver"-->
+<!--        android:layout_width="121dp"-->
+<!--        android:layout_height="51dp"-->
+<!--        android:onClick="onDriver"-->
+<!--        android:text="driver"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/manager"-->
+<!--        app:layout_constraintVertical_bias="0.085" />-->
 
-    <Button
-        android:id="@+id/client"
-        android:layout_width="121dp"
-        android:layout_height="51dp"
-        android:onClick="onClient"
-        android:text="client"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/driver"
-        app:layout_constraintVertical_bias="0.174" />
+<!--    <Button-->
+<!--        android:id="@+id/client"-->
+<!--        android:layout_width="121dp"-->
+<!--        android:layout_height="51dp"-->
+<!--        android:onClick="onClient"-->
+<!--        android:text="client"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/driver"-->
+<!--        app:layout_constraintVertical_bias="0.174" />-->
 
-    <Button
-        android:id="@+id/manager"
-        android:layout_width="121dp"
-        android:layout_height="51dp"
-        android:onClick="onManager"
-        android:text="manager"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.28" />
+<!--    <Button-->
+<!--        android:id="@+id/manager"-->
+<!--        android:layout_width="121dp"-->
+<!--        android:layout_height="51dp"-->
+<!--        android:onClick="onManager"-->
+<!--        android:text="manager"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/login_button"-->
+<!--        app:layout_constraintVertical_bias="0.28" />-->
 
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="181dp"
-        android:layout_height="92dp"
-        android:text="M.I.A Packages Welcomes You!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintHorizontal_bias="0.047"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+<!--    <TextView-->
+<!--        android:id="@+id/textView"-->
+<!--        android:layout_width="181dp"-->
+<!--        android:layout_height="92dp"-->
+<!--        android:text="M.I.A Packages Welcomes You!"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.047"-->
+<!--        app:layout_constraintLeft_toLeftOf="parent"-->
+<!--        app:layout_constraintRight_toRightOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        app:layout_constraintVertical_bias="0.022" />-->
 
 
-    <EditText
-        android:id="@+id/userName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
-        android:ems="10"
-        android:hint="User name"
-        android:inputType="textPersonName"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+<!--    <EditText-->
+<!--        android:id="@+id/userName"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="132dp"-->
+<!--        android:ems="10"-->
+<!--        android:textSize="20dp"-->
+<!--        android:hint="User name"-->
+<!--        android:inputType="textPersonName"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:textStyle="bold|italic"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.457"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent" />-->
 
-    <EditText
-        android:id="@+id/password"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.457"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/userName" />
+<!--    <EditText-->
+<!--        android:id="@+id/password"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:layout_marginTop="16dp"-->
+<!--        android:ems="10"-->
+<!--        android:hint="Password"-->
+<!--        android:textSize="20dp"-->
+<!--        android:textStyle="bold|italic"-->
+<!--        android:textColor="#000000"-->
+<!--        android:textColorHint="@color/black"-->
+<!--        android:inputType="textPassword"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.457"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/userName" />-->
+
+
 
     <Button
         android:id="@+id/register_button"
@@ -96,34 +107,37 @@
         android:text="register"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.465"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/login_button"
-        app:layout_constraintVertical_bias="0.075" />
+        app:layout_constraintVertical_bias="0.07" />
 
     <Button
         android:id="@+id/login_button"
         android:layout_width="121dp"
         android:layout_height="51dp"
-        android:layout_marginTop="20dp"
-        android:onClick="onLogin"
+        android:layout_marginBottom="432dp"
+        android:onClick="login"
         android:text="login"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/types" />
+        app:layout_constraintHorizontal_bias="0.465"
+        app:layout_constraintStart_toStartOf="parent" />
 
-    <Spinner
-        android:id="@+id/types"
-        android:layout_width="227dp"
-        android:layout_height="29dp"
-        android:layout_marginTop="28dp"
-        android:entries="@array/type_user_options"
-        android:spinnerMode="dropdown"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password"
-        tools:ignore="MissingConstraints" />
+    <!--    <Spinner-->
+<!--        android:id="@+id/types"-->
+<!--        android:layout_width="227dp"-->
+<!--        android:layout_height="29dp"-->
+<!--        android:layout_marginTop="28dp"-->
+<!--        android:entries="@array/type_user_options"-->
+<!--        android:spinnerMode="dropdown"-->
+<!--        android:textSize="20dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/password"-->
+<!--        tools:ignore="MissingConstraints" />-->
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
