@@ -28,6 +28,7 @@ public class Client extends AppCompatActivity {
         setContentView(R.layout.activity_client);
         Intent intent = getIntent();
         clientName = intent.getStringExtra("clientName");
+        System.out.println(clientName+"@@@@@@2@22@");
         // Initialize contacts
         items = createContactsList();
     }
