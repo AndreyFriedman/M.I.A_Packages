@@ -35,10 +35,10 @@ public class Login extends AppCompatActivity {
             searchInDataSet(document1);
         }
         if (typeUser.equals("driver")) {
-            searchInDataSet(document2);
+            searchWorkers(document2);
         }
         if (typeUser.equals("manager")) {
-            searchInDataSet(document3);
+            searchWorkers(document3);
         }
         if (typeUser.equals("no type user selected")) {
             System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
@@ -93,21 +93,6 @@ public class Login extends AppCompatActivity {
                             }
                         }
                     }
-//                    for ( String key : cli.keySet()) {
-//                        CharSequence userS = userName.getText().toString();
-//                        System.out.println("1111111111111111111 " + key);
-//                        if(userS.equals(key)){
-//                            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!! " + key);
-//                            CharSequence passwordS = password.getText().toString();
-//                            if(cli.get(key).equals(passwordS)){
-//                                loginSucces();//return true;
-//                            }
-//                            else{
-//                                loginFailure();
-//                            }
-//                        }
-//                    }
-
                 }
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -118,6 +103,29 @@ public class Login extends AppCompatActivity {
         });
         return false;
     }
+    public boolean searchWorkers(String document){
+        FirebaseFirestore db = FirebaseFirestore.getInstance();
+        DocumentReference users = db.collection("users").document(document);
+        users.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
+            @Override
+            public void onSuccess(@NonNull DocumentSnapshot documentSnapshot) {
+                if (documentSnapshot.exists()) {
+                    Map<String,Object> cli = documentSnapshot.getData();
+                    for (Map.Entry<String, Object> entry : cli.entrySet()) {
+                        CharSequence userN = userName.getText().toString();
+                        CharSequence passwordS = password.getText().toString();
+                        if (entry.getKey().equals(userN) && entry.getValue().equals(passwordS)) {
+                            loginSucces();//return true;
+                        } else {
+                            loginFailure();
+                        }
+                    }
+                }
+            }
+        });
+        return false;
+    }
+
 
     public void loginSucces() {
         if (typeUser.equals("client")) {
