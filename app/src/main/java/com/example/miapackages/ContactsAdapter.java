@@ -148,8 +148,6 @@ class ContactsAdapter extends
         return items.size();
     }
 
-
-
 }
 
 

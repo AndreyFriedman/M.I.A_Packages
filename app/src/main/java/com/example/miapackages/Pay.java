@@ -24,7 +24,7 @@ public class Pay extends AppCompatActivity {
 
     }
     public void onPay(View view) {
-        d.payData(clientName);
+        //d.payData(clientName);
         Intent intent = new Intent(this, Client.class);
         intent.putExtra("clientName",clientName);
         startActivity(intent);
