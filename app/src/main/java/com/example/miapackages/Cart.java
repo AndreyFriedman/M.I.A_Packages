@@ -26,6 +26,9 @@ public class Cart extends AppCompatActivity {
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
     String clientName;
+    int totPriceAll;
+    String address;
+    String phone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,9 +36,10 @@ public class Cart extends AppCompatActivity {
         setContentView(R.layout.activity_cart);
         Intent intent = getIntent();
         clientName = intent.getStringExtra("clientName");
+        address = intent.getStringExtra("Address");
+        phone = intent.getStringExtra("Phone");
         System.out.println("11111111"+ clientName);
         items = createContactsList();
-        //items = createContactsList2();
 
     }
 
@@ -54,6 +58,7 @@ public class Cart extends AppCompatActivity {
     }
 
     protected ArrayList<Item> createContactsList() {
+        totPriceAll = 0;
         DocumentReference docRef = db.collection("cart").document(clientName);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
             @RequiresApi(api = Build.VERSION_CODES.N)
@@ -88,6 +93,7 @@ public class Cart extends AppCompatActivity {
                                     int pp=Integer.parseInt(pr.substring(priceStart, priceEnd));
                                     items.add(new Item(key,(pr.substring(supplierStart, supplierEnd)),pp, Integer.parseInt(pr.substring(amountStart, amountEnd)),Integer.parseInt(pr.substring(totPriceStart, totPriceEnd))));
                                     System.out.println("__________________________________________________________");
+                                    totPriceAll += Integer.parseInt(pr.substring(totPriceStart, totPriceEnd));
                                 });
 
                         onCreate2(items);
@@ -108,4 +114,14 @@ public class Cart extends AppCompatActivity {
         intent.putExtra("clientName",clientName);
         startActivity(intent);
     }
+    public void onPay(View view) {
+        Intent intent = new Intent(this, Pay.class);
+        intent.putExtra("clientName",clientName);
+        intent.putExtra("Address",address);
+        intent.putExtra("Phone",phone);
+        System.out.println("1!1!1!! "+totPriceAll);
+        intent.putExtra("tot",totPriceAll);
+        startActivity(intent);
+    }
+
 }

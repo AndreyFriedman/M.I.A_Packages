@@ -80,11 +80,21 @@ public class Login extends AppCompatActivity {
                         CharSequence userN = userName.getText().toString();
                         if (entry.getKey().equals(userN)){
                             Map<String, Object> client = (Map<String, Object>) entry.getValue();
+                            String phone=null;
+                            String address = null;
+                            for (Map.Entry<String, Object> e : client.entrySet()) {
+                                if (e.getKey().equals("Address")) {
+                                    address = e.getValue().toString();
+                                }
+                                if (e.getKey().equals("Phone")) {
+                                    phone = e.getValue().toString();
+                                }
+                            }
                             for (Map.Entry<String, Object> e : client.entrySet()) {
                                 if (e.getKey().equals("password")) {
                                     CharSequence passwordS = password.getText().toString();
                                     if(e.getValue().toString().equals(passwordS)){
-                                        loginSucces();//return true;
+                                        loginSucces(address,phone);//return true;
                                     }
                                     else{
                                         loginFailure();
@@ -115,7 +125,7 @@ public class Login extends AppCompatActivity {
                         CharSequence userN = userName.getText().toString();
                         CharSequence passwordS = password.getText().toString();
                         if (entry.getKey().equals(userN) && entry.getValue().equals(passwordS)) {
-                            loginSucces();//return true;
+                            loginSucces("no","no");//return true;
                         } else {
                             loginFailure();
                         }
@@ -127,15 +137,18 @@ public class Login extends AppCompatActivity {
     }
 
 
-    public void loginSucces() {
+    public void loginSucces(String address,String phone) {
         if (typeUser.equals("client")) {
             Intent intent = new Intent(this, Client.class);
             intent.putExtra("clientName",userString);
+            intent.putExtra("Address",address);
+            intent.putExtra("Phone",phone);
 
             startActivity(intent);
         }
         if (typeUser.equals("driver")) {
             Intent intent = new Intent(this, Driver.class);
+            intent.putExtra("clientName",userString);
             startActivity(intent);
         }
         if (typeUser.equals("manager")) {
