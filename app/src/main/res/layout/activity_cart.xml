@@ -53,10 +53,11 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvContacts"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="408dp"
+        android:layout_height="630dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView2" />
 
@@ -64,9 +65,26 @@
         android:id="@+id/button2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="list"
+        android:layout_marginEnd="235dp"
         android:onClick="onClient"
-        tools:layout_editor_absoluteX="1dp"
+        android:text="list"
+        app:layout_constraintEnd_toStartOf="@+id/pay"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:ignore="MissingConstraints" />
+
+    <Button
+        android:id="@+id/pay"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="43dp"
+        android:layout_marginTop="16dp"
+        android:onClick="onPay"
+        android:text="Pay"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textView5"
+        app:layout_constraintTop_toTopOf="parent"
         tools:ignore="MissingConstraints" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
