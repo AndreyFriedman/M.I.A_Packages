@@ -26,6 +26,7 @@ public class Pay extends AppCompatActivity {
         totPrice = intent.getIntExtra("tot",0);
         address = intent.getStringExtra("Address");
         phone = intent.getStringExtra("Phone");
+
         TextView priceRep = (TextView) findViewById(R.id.totalPay);
         String pr = String.valueOf(totPrice);
         priceRep.setText(pr);
@@ -40,6 +41,10 @@ public class Pay extends AppCompatActivity {
         startActivity(intent);
     }
     protected void payData(){
+        System.out.println("1!1!1!! "+clientName);
+        System.out.println("1!1!1!! "+address);
+        System.out.println("1!1!1!! "+phone);
+        System.out.println("1!1!1!! "+totPrice);
         System.out.println("Claas Pay: "+ address + " "+ phone);
         String cart = "cart";
         String pac = "package";

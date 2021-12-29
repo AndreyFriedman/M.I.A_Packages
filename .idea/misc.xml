@@ -10,29 +10,23 @@
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_main.xml" value="0.2269021739130435" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_manager.xml" value="0.14791666666666667" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_manager2.xml" value="0.33" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_pay.xml" value="0.24739583333333334" />
         <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/activity_register.xml" value="0.19701086956521738" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/drawable/button_gradient.xml" value="0.1625" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/drawable/gradient.xml" value="0.1625" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/drawable/ic_launcher_background.xml" value="0.1625" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_cart.xml" value="0.4" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_client.xml" value="0.536" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_data.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_driver.xml" value="0.536" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/items.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Andrey/AndroidStudioProjects/MyApplication/app/src/main/res/layout/orders.xml" value="0.24739583333333334" />
+        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_client.xml" value="0.20199275362318841" />
+        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_driver.xml" value="0.20199275362318841" />
         <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_main.xml" value="0.4" />
         <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager.xml" value="0.20199275362318841" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager2.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_pay.xml" value="0.536" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_register.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/items.xml" value="0.16893115942028986" />
-        <entry key="..\:/Users/Itamar Almog/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/orders.xml" value="0.21927083333333333" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_client.xml" value="0.136" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_driver.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_login.xml" value="0.12360688956433637" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager.xml" value="0.1793478260869565" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_manager2.xml" value="0.12360688956433637" />
-        <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_register.xml" value="0.176" />
+        <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_register.xml" value="0.264" />
         <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/activity_shopping_cart.xml" value="0.2" />
+        <entry key="..\:/Users/meyta/AndroidStudioProjects/M.I.A_Packages/app/src/main/res/layout/items.xml" value="0.12360688956433637" />
       </map>
     </option>
   </component>

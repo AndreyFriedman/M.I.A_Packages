@@ -13,17 +13,13 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2> {
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
-    private List<Order> orders;
-//    private int mazav;
-//    private String clientName;
+
 
 
     // Provide a direct reference to each of the views within a data item
@@ -40,11 +36,10 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
             super(itemView);
-            this.nameT = itemView.findViewById(R.id.item_name);
-            this.phoneT = itemView.findViewById(R.id.item_amount);
-            this.addressT = itemView.findViewById(R.id.item_price);
-            this.itemT = itemView.findViewById(R.id.item_supp);
-            this.amountT = itemView.findViewById(R.id.message_button);
+            this.phoneT = itemView.findViewById(R.id.phone_num);
+            this.addressT = itemView.findViewById(R.id.address);
+            this.itemT = itemView.findViewById(R.id.items);
+            this.amountT = itemView.findViewById(R.id.amount);
 
             itemView.setOnClickListener(this);
         }
@@ -104,11 +99,15 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         }
     }
 
+    private List<Order> orders;
+    private int mazav;
+    private String clientName;
+
     // Pass in the contact array into the constructor
     public ContactsAdapter2(ArrayList<Order> contacts, int i, String clientNameTemp) {
         orders = contacts;
-        //mazav = i;
-        String clientName = clientNameTemp;
+        mazav = i;
+        clientName = clientNameTemp;
     }
 
     @Override
@@ -131,11 +130,19 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         Order contact = orders.get(position);
 
         // Set item views based on your views and data model
-        TextView name = holder.nameT;
         TextView phone = holder.phoneT;
         TextView address = holder.addressT;
         TextView item = holder.itemT;
         TextView amount = holder.amountT;
+
+        item.setText(contact.getItemsS());
+        amount.setText(contact.getAmounts());
+        phone.setText(contact.getPhone());
+        address.setText(contact.getAddressS());
+
+
+
+
 //            this.nameT = itemView.findViewById(R.id.item_name);
 //            this.phoneT = itemView.findViewById(R.id.item_amount);
 //            this.addressT = itemView.findViewById(R.id.item_price);

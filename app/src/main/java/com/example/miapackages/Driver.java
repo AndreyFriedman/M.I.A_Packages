@@ -1,13 +1,12 @@
 package com.example.miapackages;
 
+import android.content.Intent;
+import android.os.Bundle;
+
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-
-import android.content.Intent;
-import android.os.Bundle;
-import android.view.View;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -98,6 +97,10 @@ public class Driver extends AppCompatActivity {
                                 System.out.println("phone:"+ phone);
                                 System.out.println("address:"+ address);
                                 orders.add(new Order(document.getId(),phone, address, items,amounts));
+                                address="";
+                                phone="";
+                                items="";
+                                amounts="";
                             }
                             onCreate2(orders);
                         } else {

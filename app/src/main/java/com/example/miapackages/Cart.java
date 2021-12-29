@@ -121,7 +121,7 @@ public class Cart extends AppCompatActivity {
         intent.putExtra("clientName",clientName);
         intent.putExtra("Address",address);
         intent.putExtra("Phone",phone);
-        System.out.println("1!1!1!! "+totPriceAll);
+
         intent.putExtra("tot",totPriceAll);
         startActivity(intent);
     }

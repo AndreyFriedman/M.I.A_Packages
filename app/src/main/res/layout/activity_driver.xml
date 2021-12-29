@@ -11,8 +11,6 @@
         android:layout_width="413dp"
         android:layout_height="457dp"
         android:layout_marginTop="17dp"
-        android:layout_marginBottom="188dp"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/Phone"
@@ -47,11 +45,10 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="75dp"
-        android:layout_marginTop="50dp"
         android:text="address"
         app:layout_constraintBottom_toTopOf="@+id/rcView"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/button" />
 
     <TextView
         android:id="@+id/Items"
@@ -59,8 +56,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="204dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="102dp"
         android:text="items"
-        app:layout_constraintBottom_toTopOf="@+id/rcView"
+        app:layout_constraintEnd_toStartOf="@+id/Amounts"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -70,8 +68,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="340dp"
         android:layout_marginTop="50dp"
+        android:layout_marginEnd="16dp"
         android:text="amounts"
-        app:layout_constraintBottom_toTopOf="@+id/rcView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

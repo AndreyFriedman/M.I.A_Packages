@@ -9,25 +9,25 @@
     >
 
     <TextView
-        android:id="@+id/item_name"
+        android:id="@+id/phone_num"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
     <TextView
-        android:id="@+id/item_price"
+        android:id="@+id/address"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
     <TextView
-        android:id="@+id/item_amount"
+        android:id="@+id/items"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         />
     <TextView
-        android:id="@+id/item_supp"
+        android:id="@+id/amount"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_weight="1"
