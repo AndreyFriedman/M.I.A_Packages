@@ -7,35 +7,45 @@
     android:background="@drawable/registerbackground"
     tools:context=".Register">
 
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="40dp"
+        android:src="@drawable/logo"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <EditText
         android:id="@+id/clientUserName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="88dp"
+        android:layout_marginTop="40dp"
         android:ems="10"
         android:hint="eMail"
-        android:textSize="20dp"
-        android:textColorHint="@color/black"
-        android:textColor="#000000"
-        android:textStyle="bold|italic"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/logo" />
 
     <EditText
         android:id="@+id/clientPassword"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="password"
-        android:textSize="20dp"
-        android:textColorHint="@color/black"
-        android:textColor="#000000"
-        android:textStyle="bold|italic"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/clientUserName" />
@@ -44,35 +54,33 @@
         android:id="@+id/ClientPhone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="76dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="phonenumber"
-        android:textSize="20dp"
-        android:textColorHint="@color/black"
-        android:textColor="#000000"
-        android:textStyle="bold|italic"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clientUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/ClientAddress" />
 
     <EditText
         android:id="@+id/ClientAddress"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="132dp"
+        android:layout_marginTop="20dp"
         android:ems="10"
         android:hint="address"
-        android:textSize="20dp"
-        android:textColorHint="@color/black"
-        android:textColor="#000000"
-        android:textStyle="bold|italic"
         android:inputType="textPersonName"
+        android:textColor="#000000"
+        android:textColorHint="@color/black"
+        android:textSize="20dp"
+        android:textStyle="bold|italic"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/clientUserName" />
+        app:layout_constraintTop_toBottomOf="@+id/clientPassword" />
 
     <Button
         android:id="@+id/registration"

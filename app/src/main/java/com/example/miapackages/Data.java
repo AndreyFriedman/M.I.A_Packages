@@ -89,24 +89,28 @@ public class Data extends AppCompatActivity {
                         else {
                             pr = document.getData().get(name).toString();
                             int amountStart = pr.indexOf("amount=") + 7;
-                            int amountEnd = pr.indexOf(", price");
+                            int amountEnd = pr.indexOf(", supplier=");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", supplier");
+                            int priceEnd = pr.indexOf(", totPrice");
                             int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", totPrice");
+                            int supplierEnd = pr.indexOf(", price");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
                             if (mazav == 1){
                                 prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) + 1);
+                                prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
+                                prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
                                 prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) + Integer.parseInt(pr.substring(priceStart, priceEnd)));
                             }
                             if (mazav == 2){
                                 prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) - 1);
+                                prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
+                                prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
                                 prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) - Integer.parseInt(pr.substring(priceStart, priceEnd)));
+
                             }
 
-                            prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
-                            prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
+
 
 
                         }

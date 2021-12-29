@@ -83,6 +83,8 @@ public class Cart extends AppCompatActivity {
                                     int supplierEnd = pr.indexOf(", totPrice");
                                     int totPriceStart = pr.indexOf("totPrice=") + 9;
                                     int totPriceEnd = pr.indexOf("}");
+
+
 //                                    System.out.println(maps.toString());
 //                                    System.out.println(maps.get(key).toString());
 //                                    System.out.println(key);

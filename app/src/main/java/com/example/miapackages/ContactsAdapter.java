@@ -60,13 +60,14 @@ class ContactsAdapter extends
 
                 System.out.println(amm);
                 if (amm > 0) {
-                    items.get(position).setAmount(amm - 1);
+                    amm=amm-1;
+                    items.get(position).setAmount(amm);
 
                     Map<String, Object> m = new HashMap<>();
                     m.put("amount", amm);
                     m.put("price", price);
                     m.put("supplier", items.get(position).getSupplier());
-
+                    System.out.println("addddd item");
                     d.setDoc(db, "items", name, m);
                     d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 1);
                 } else {
