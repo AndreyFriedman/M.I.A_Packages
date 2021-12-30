@@ -2,6 +2,7 @@ package com.example.miapackages;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -29,10 +30,10 @@ public class Driver extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_driver);
         Intent intent = getIntent();
-        clientName = intent.getStringExtra("clientName");
-        address = intent.getStringExtra("Address");
-        phone = intent.getStringExtra("Phone");
-        System.out.println(clientName+"@@@@@@2@22@");
+//        clientName = intent.getStringExtra("clientName");
+//        address = intent.getStringExtra("Address");
+//        phone = intent.getStringExtra("Phone");
+//        System.out.println(clientName+"@@@@@@2@22@");
         // Initialize contacts
         orders = createContactsList();
     }
@@ -111,11 +112,11 @@ public class Driver extends AppCompatActivity {
         return orders;
     }
 
-//    public void onCart(View view){
-//        Intent intent = new Intent(this, Cart.class);
-//        intent.putExtra("clientName",clientName);
-//        intent.putExtra("Address",address);
-//        intent.putExtra("Phone",phone);
-//        startActivity(intent);
-//    }
+    public void onCartBoard(View view){
+        Intent intent = new Intent(this, CartBoard.class);
+        //intent.putExtra("clientName",clientName);
+        //intent.putExtra("Address",address);
+        //intent.putExtra("Phone",phone);
+        startActivity(intent);
+    }
 }
