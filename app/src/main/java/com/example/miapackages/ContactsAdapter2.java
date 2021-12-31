@@ -52,14 +52,14 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
             String address = orders.get(position).getAddressS();
             String amounts = orders.get(position).getAmounts();
             String phone = orders.get(position).getPhone();
-            String name = orders.get(position).getIdS();
+            String id = orders.get(position).getIdS();
 
             this.phoneT = itemView.findViewById(R.id.item_amount);
             this.addressT = itemView.findViewById(R.id.item_price);
             this.itemT = itemView.findViewById(R.id.item_supp);
             this.amountT = itemView.findViewById(R.id.message_button);
 
-            d.delDoc(db,"package",name);
+            d.delDoc(db,"package",id);
 
         }
     }

@@ -193,12 +193,7 @@ public class Data extends AppCompatActivity {
                     }
                 });
     }
-    protected void addString(FirebaseFirestore db,String coll,String doc,String s){
 
-
-
-
-    }
     protected void hashData(FirebaseFirestore db,String coll,String doc,String pac,String address,String phone){
         DocumentReference extract = db.collection(coll).document(doc);
         extract.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {

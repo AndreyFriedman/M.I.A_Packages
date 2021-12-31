@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.HashMap;
+
 public class Pay extends AppCompatActivity {
     String clientName;
     int totPrice;
@@ -50,6 +52,10 @@ public class Pay extends AppCompatActivity {
         String cart = "cart";
         String pac = "package";
         d.hashData(db,cart, clientName,pac,address,phone);
-
+        HashMap<String,Object> prod = new HashMap<>();
+        String ad = "";
+        ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice;
+        prod.put("ad",ad);
+        d.setDoc(db,"history","123",prod);
     }
 }
