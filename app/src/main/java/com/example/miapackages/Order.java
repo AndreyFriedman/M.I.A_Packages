@@ -6,7 +6,6 @@ public class Order {
     private String itemsS = "";
     private String phoneS = "";
     private String addressS = "";
-    //private int totAmountS = 0;
     public Order(String id,String phone, String address, String items, String amounts) {
         idS = id;
         phoneS = phone;

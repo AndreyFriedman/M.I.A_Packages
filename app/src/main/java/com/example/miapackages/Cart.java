@@ -39,6 +39,8 @@ public class Cart extends AppCompatActivity {
         address = intent.getStringExtra("Address");
         phone = intent.getStringExtra("Phone");
         System.out.println("11111111"+ clientName);
+        System.out.println("11111111"+ address);
+        System.out.println("11111111"+ phone);
         items = createContactsList();
 
     }

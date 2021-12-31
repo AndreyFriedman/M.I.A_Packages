@@ -18,6 +18,7 @@ public class Pay extends AppCompatActivity {
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pay);
@@ -49,5 +50,6 @@ public class Pay extends AppCompatActivity {
         String cart = "cart";
         String pac = "package";
         d.hashData(db,cart, clientName,pac,address,phone);
+
     }
 }

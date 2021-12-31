@@ -27,7 +27,7 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
     public class ViewHolder2 extends RecyclerView.ViewHolder implements View.OnClickListener {
         // Your holder should contain a member variable
         // for any view that will be set as you render a row
-        public TextView nameT, phoneT,addressT,itemT, amountT;
+        public TextView phoneT,addressT,itemT, amountT;
         public Button messageButton;
 
         // We also create a constructor that accepts the entire item row
@@ -49,52 +49,17 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         public void onClick(View view) { //when clicks on item
             int position = getAdapterPosition();// gets item position
             String items = orders.get(position).getItemsS();
-            String name = orders.get(position).getIdS();
+            String address = orders.get(position).getAddressS();
             String amounts = orders.get(position).getAmounts();
-            //System.out.println(amm);
-            //            this.nameT = itemView.findViewById(R.id.item_name);
-//            this.phoneT = itemView.findViewById(R.id.item_amount);
-//            this.addressT = itemView.findViewById(R.id.item_price);
-//            this.itemT = itemView.findViewById(R.id.item_supp);
-//            this.amountT = itemView.findViewById(R.id.message_button);
-//            if (mazav == 1) {
-//
-//                System.out.println(amm);
-//                if (amm > 0) {
-//                    items.get(position).setAmount(amm - 1);
-//
-//                    Map<String, Object> m = new HashMap<>();
-//                    m.put("amount", amm);
-//                    m.put("price", price);
-//                    m.put("supplier", items.get(position).getSupplier());
-//
-//                    d.setDoc(db, "items", name, m);
-//                    d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 1);
-//                } else {
-//                    System.out.println("there is no more items");
-//
-//                    Map<String, Object> m = new HashMap<>();
-//                    m.put("amount", amm);
-//                    m.put("price", price);
-//                    m.put("supplier", items.get(position).getSupplier());
-//
-//                    d.setDoc(db, "items", name, m);
-//                }
-//            }
-//
-//            if (mazav == 2) {
-//
-//
-//                //items.get(position).setAmount(amm + 1);
-//
-//                Map<String, Object> m = new HashMap<>();
-//                m.put("amount", amm);
-//                m.put("price", price);
-//                m.put("supplier", items.get(position).getSupplier());
-//
-//                d.addDocItem(db, name, 1, price, items.get(position).getSupplier());
-//                d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 2);
-//            }
+            String phone = orders.get(position).getPhone();
+            String name = orders.get(position).getIdS();
+
+            this.phoneT = itemView.findViewById(R.id.item_amount);
+            this.addressT = itemView.findViewById(R.id.item_price);
+            this.itemT = itemView.findViewById(R.id.item_supp);
+            this.amountT = itemView.findViewById(R.id.message_button);
+
+            d.delDoc(db,"package",name);
 
         }
     }
@@ -139,6 +104,8 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         amount.setText(contact.getAmounts());
         phone.setText(contact.getPhone());
         address.setText(contact.getAddressS());
+
+
 
 
 

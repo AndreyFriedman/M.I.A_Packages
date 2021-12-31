@@ -21,6 +21,7 @@ import java.util.Map;
 
 public class Data extends AppCompatActivity {
     //HashMap<String,Object> userData = new HashMap<>();
+    int numOfPac = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -109,10 +110,6 @@ public class Data extends AppCompatActivity {
                                 prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) - Integer.parseInt(pr.substring(priceStart, priceEnd)));
 
                             }
-
-
-
-
                         }
                         maps.put(name, prod);
                         setDoc(db,"cart",userName,maps);
@@ -196,7 +193,12 @@ public class Data extends AppCompatActivity {
                     }
                 });
     }
+    protected void addString(FirebaseFirestore db,String coll,String doc,String s){
 
+
+
+
+    }
     protected void hashData(FirebaseFirestore db,String coll,String doc,String pac,String address,String phone){
         DocumentReference extract = db.collection(coll).document(doc);
         extract.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
