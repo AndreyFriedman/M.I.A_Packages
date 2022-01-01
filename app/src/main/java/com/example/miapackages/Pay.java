@@ -2,13 +2,12 @@ package com.example.miapackages;
 
 import static com.example.miapackages.Notification.CHANNEL_1_ID;
 
+import android.app.Notification;
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.NotificationCompat;
 import androidx.core.app.NotificationManagerCompat;
@@ -20,7 +19,8 @@ import java.util.Date;
 import java.util.HashMap;
 
 public class Pay extends AppCompatActivity {
-    private NotificationManagerCompat notificationManager;
+    public NotificationManagerCompat notificationManager;
+
     private static final String CHANNEL_ID = "channel";
     String clientName;
     int totPrice;
@@ -47,17 +47,15 @@ public class Pay extends AppCompatActivity {
         priceRep.setText(pr);
 
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onPay(View view) {
         sendOnChannel1();
         payData();
-        Intent intent = new Intent(this, Client.class);
-        intent.putExtra("clientName",clientName);
-        intent.putExtra("Address",address);
-        intent.putExtra("Phone",phone);
-        startActivity(intent);
+//        Intent intent = new Intent(this, Client.class);
+//        intent.putExtra("clientName",clientName);
+//        intent.putExtra("Address",address);
+//        intent.putExtra("Phone",phone);
+//        startActivity(intent);
     }
-    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void payData(){
         System.out.println("1!1!1!! "+clientName);
         System.out.println("1!1!1!! "+address);
@@ -92,14 +90,17 @@ public class Pay extends AppCompatActivity {
     }
     public void sendOnChannel1() {
 
-        android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+        Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
                 .setSmallIcon(R.drawable.logo)
-                .setContentTitle("title")
-                .setContentText("message")
+                .setContentTitle("M.I.A Packages")
+                .setContentText("Your order has been placed")
                 .setPriority(NotificationCompat.PRIORITY_HIGH)
                 .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+
                 .build();
 
         notificationManager.notify(1, notification);
     }
+
+
 }
