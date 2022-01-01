@@ -194,6 +194,23 @@ public class Data extends AppCompatActivity {
                 });
     }
 
+//    protected void addDoc(FirebaseFirestore db, String col, String doc, Map<String, Object> updates){
+//        db.collection(col).document(doc)
+//                .set()
+//                .addOnSuccessListener(new OnSuccessListener<Void>() {
+//                    @Override
+//                    public void onSuccess(Void aVoid) {
+//
+//                    }
+//                })
+//                .addOnFailureListener(new OnFailureListener() {
+//                    @Override
+//                    public void onFailure(@NonNull Exception e) {
+//
+//                    }
+//                });
+//    }
+
     protected void hashData(FirebaseFirestore db,String coll,String doc,String pac,String address,String phone,String randomKey){
         DocumentReference extract = db.collection(coll).document(doc);
         extract.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
@@ -211,7 +228,7 @@ public class Data extends AppCompatActivity {
                     pack.put("Order",data);
                     pack.put("Address",address);
                     pack.put("Phone",phone);
-                    setDoc(db,randomKey,doc,pack);
+                    setDoc(db,pac,randomKey,pack);
                     HashMap<String,Object> empty = new HashMap<>();
                     delAllFields(db,"cart",doc,empty);
                 }

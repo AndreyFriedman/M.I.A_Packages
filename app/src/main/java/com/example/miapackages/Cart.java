@@ -78,11 +78,11 @@ public class Cart extends AppCompatActivity {
                             String pr;
                             pr = maps.get(key).toString();
                             int amountStart = pr.indexOf("amount=") + 7;
-                            int amountEnd = pr.indexOf(", supplier");
+                            int amountEnd = pr.indexOf(", price");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", totPrice");
+                            int priceEnd = pr.indexOf(", supplier");
                             int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", price");
+                            int supplierEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
 
