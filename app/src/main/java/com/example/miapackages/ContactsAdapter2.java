@@ -106,21 +106,6 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         address.setText(contact.getAddressS());
 
 
-
-
-
-
-//            this.nameT = itemView.findViewById(R.id.item_name);
-//            this.phoneT = itemView.findViewById(R.id.item_amount);
-//            this.addressT = itemView.findViewById(R.id.item_price);
-//            this.itemT = itemView.findViewById(R.id.item_supp);
-//            this.amountT = itemView.findViewById(R.id.message_button);
-        //name.setText(contact.getIdS());
-       // amount.setText(contact.getAmounts());
-//        price.setText(contact.getPrice());
-//        supp.setText(contact.getSupplier());
-//        if (mazav == 2)
-//            tot.setText(Integer.toString(contact.getTotAmount()));
     }
 
     // Returns the total count of items in the list
