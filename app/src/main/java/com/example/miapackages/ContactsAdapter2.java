@@ -59,6 +59,8 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
             this.itemT = itemView.findViewById(R.id.item_supp);
             this.amountT = itemView.findViewById(R.id.message_button);
 
+
+
             d.delDoc(db,"package",id);
 
         }

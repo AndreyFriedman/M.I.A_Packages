@@ -1,19 +1,27 @@
 package com.example.miapackages;
 
+import static com.example.miapackages.Notification.CHANNEL_1_ID;
+
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.NotificationCompat;
+import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
-import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 
 public class Pay extends AppCompatActivity {
+    private NotificationManagerCompat notificationManager;
+    private static final String CHANNEL_ID = "channel";
     String clientName;
     int totPrice;
     Data d = new Data();
@@ -31,13 +39,17 @@ public class Pay extends AppCompatActivity {
         totPrice = intent.getIntExtra("tot",0);
         address = intent.getStringExtra("Address");
         phone = intent.getStringExtra("Phone");
+        notificationManager = NotificationManagerCompat.from(this);
+        //createNotificationChannel();
 
         TextView priceRep = (TextView) findViewById(R.id.totalPay);
         String pr = String.valueOf(totPrice);
         priceRep.setText(pr);
 
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     public void onPay(View view) {
+        sendOnChannel1();
         payData();
         Intent intent = new Intent(this, Client.class);
         intent.putExtra("clientName",clientName);
@@ -45,27 +57,49 @@ public class Pay extends AppCompatActivity {
         intent.putExtra("Phone",phone);
         startActivity(intent);
     }
+    @RequiresApi(api = Build.VERSION_CODES.O)
     protected void payData(){
         System.out.println("1!1!1!! "+clientName);
         System.out.println("1!1!1!! "+address);
         System.out.println("1!1!1!! "+phone);
         System.out.println("1!1!1!! "+totPrice);
         System.out.println("Claas Pay: "+ address + " "+ phone);
+
+        Date date = new Date();
+        long time =date.getTime();
+        //String id
+        String id = Long.toString(time);
         String cart = "cart";
         String pac = "package";
         String saveCurrentDate, saveCurrentTime;
         Calendar calendar=Calendar.getInstance();
-        SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
-        saveCurrentDate=currentDate.format(calendar.getTime());
-        SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm:ss a");
-        saveCurrentTime=currentTime.format(calendar.getTime());
-        String randomKey=saveCurrentDate+saveCurrentTime;
+//        SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
+//        saveCurrentDate=currentDate.format(calendar.getFirstDayOfWeek());
+//        SimpleDateFormat sdf = new SimpleDateFormat();
+//        Data date = sdf.parse(dateString);
+//        SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm:ss a");
+//        saveCurrentTime=currentTime.format(calendar.getTime());
+        String randomKey=Long.toString(calendar.getTimeInMillis());//saveCurrentDate+saveCurrentTime;
 
         d.hashData(db,cart, clientName,pac,address,phone, randomKey);
         HashMap<String,Object> prod = new HashMap<>();
         String ad = "";
         ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice;
         prod.put("ad",ad);
-        d.setDoc(db,"history","123",prod);
+        d.setDoc(db,"history",id,prod);
+
+
+    }
+    public void sendOnChannel1() {
+
+        android.app.Notification notification = new NotificationCompat.Builder(this, CHANNEL_1_ID)
+                .setSmallIcon(R.drawable.logo)
+                .setContentTitle("title")
+                .setContentText("message")
+                .setPriority(NotificationCompat.PRIORITY_HIGH)
+                .setCategory(NotificationCompat.CATEGORY_MESSAGE)
+                .build();
+
+        notificationManager.notify(1, notification);
     }
 }

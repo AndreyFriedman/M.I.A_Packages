@@ -78,8 +78,6 @@ public class Data extends AppCompatActivity {
                         document.getData().forEach(
                                 (key, value)
                                         -> maps.put(key,value));
-
-
                         String pr;
                         if(document.getData().get(name) == null){
                             prod.put("amount", 1);
@@ -88,13 +86,17 @@ public class Data extends AppCompatActivity {
                             prod.put("totPrice", price);
                         }
                         else {
+                            Map<String,Object> doc = document.getData();
+                            System.out.println("entry set of doc:"+ doc.entrySet().toString());
+                            System.out.println("anount doc data map" + doc.get("amount"));
+
                             pr = document.getData().get(name).toString();
                             int amountStart = pr.indexOf("amount=") + 7;
-                            int amountEnd = pr.indexOf(", supplier");
+                            int amountEnd = pr.indexOf(", price");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", totPrice");
+                            int priceEnd = pr.indexOf(", supplier");
                             int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", price");
+                            int supplierEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
                             if (mazav == 1){

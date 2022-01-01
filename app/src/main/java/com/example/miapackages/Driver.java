@@ -70,7 +70,12 @@ public class Driver extends AppCompatActivity {
                                 if(!doc.isEmpty()){
                                     for(Map.Entry<String, Object> entry : doc.entrySet()){
                                         if(entry.getKey().toString().equals("Address")){
-                                            address = entry.getValue().toString();
+                                            if(entry.getValue() != null) {
+                                                address = entry.getValue().toString();
+                                            }
+                                            else{
+                                                address = "address error";
+                                            }
                                         }
                                         if(entry.getKey().toString().equals("Order")){
                                             System.out.println(entry.getKey().toString() + entry.getValue());
