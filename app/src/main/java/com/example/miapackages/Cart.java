@@ -75,16 +75,16 @@ public class Cart extends AppCompatActivity {
                         System.out.println(maps.size()+"88888888888888");
                         System.out.println(maps.toString()+"88888888888888");
                         maps.forEach((key, value)->{
-                                    String pr;
-                                    pr = maps.get(key).toString();
-                                    int amountStart = pr.indexOf("amount=") + 7;
-                                    int amountEnd = pr.indexOf(", price");
-                                    int priceStart = pr.indexOf("price=") + 6;
-                                    int priceEnd = pr.indexOf(", supplier");
-                                    int supplierStart = pr.indexOf("supplier=") + 9;
-                                    int supplierEnd = pr.indexOf(", totPrice");
-                                    int totPriceStart = pr.indexOf("totPrice=") + 9;
-                                    int totPriceEnd = pr.indexOf("}");
+                            String pr;
+                            pr = maps.get(key).toString();
+                            int amountStart = pr.indexOf("amount=") + 7;
+                            int amountEnd = pr.indexOf(", supplier");
+                            int priceStart = pr.indexOf("price=") + 6;
+                            int priceEnd = pr.indexOf(", totPrice");
+                            int supplierStart = pr.indexOf("supplier=") + 9;
+                            int supplierEnd = pr.indexOf(", price");
+                            int totPriceStart = pr.indexOf("totPrice=") + 9;
+                            int totPriceEnd = pr.indexOf("}");
 
 
 //                                    System.out.println(maps.toString());
@@ -94,11 +94,11 @@ public class Cart extends AppCompatActivity {
 //                                    System.out.println(Integer.parseInt(pr.substring(priceStart, priceEnd)));
 //                                    System.out.println(Integer.parseInt(pr.substring(amountStart, amountEnd)));
 //                                    System.out.println(Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)));
-                                    int pp=Integer.parseInt(pr.substring(priceStart, priceEnd));
-                                    items.add(new Item(key,(pr.substring(supplierStart, supplierEnd)),pp, Integer.parseInt(pr.substring(amountStart, amountEnd)),Integer.parseInt(pr.substring(totPriceStart, totPriceEnd))));
-                                    System.out.println("__________________________________________________________");
-                                    totPriceAll += Integer.parseInt(pr.substring(totPriceStart, totPriceEnd));
-                                });
+                            int pp=Integer.parseInt(pr.substring(priceStart, priceEnd));
+                            items.add(new Item(key,(pr.substring(supplierStart, supplierEnd)),pp, Integer.parseInt(pr.substring(amountStart, amountEnd)),Integer.parseInt(pr.substring(totPriceStart, totPriceEnd))));
+                            System.out.println("__________________________________________________________");
+                            totPriceAll += Integer.parseInt(pr.substring(totPriceStart, totPriceEnd));
+                        });
 
                         onCreate2(items);
                     } else {

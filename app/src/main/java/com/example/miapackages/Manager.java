@@ -1,6 +1,7 @@
 package com.example.miapackages;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -28,7 +29,11 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         Spinner manager_options = (Spinner) findViewById(R.id.spinner);
         manager_options.setOnItemSelectedListener(this);
     }
-
+    public void addp(View view)
+    {
+        Intent intent = new Intent(this, AddProduct.class);
+        startActivity(intent);
+    }
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
         TextView err = (TextView) findViewById(R.id.err);
@@ -54,6 +59,7 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         Button delete_driver = (Button) findViewById(R.id.delete_driver);
 
         if (id == 0){
+
             editTextName.setVisibility(View.VISIBLE);
             editTextAmount.setVisibility(View.VISIBLE);
             editTextPrice.setVisibility(View.VISIBLE);

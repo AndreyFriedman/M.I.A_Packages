@@ -90,11 +90,11 @@ public class Data extends AppCompatActivity {
                         else {
                             pr = document.getData().get(name).toString();
                             int amountStart = pr.indexOf("amount=") + 7;
-                            int amountEnd = pr.indexOf(", price");
+                            int amountEnd = pr.indexOf(", supplier");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", supplier=");
+                            int priceEnd = pr.indexOf(", totPrice");
                             int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", totPrice");
+                            int supplierEnd = pr.indexOf(", price");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
                             if (mazav == 1){
@@ -194,7 +194,7 @@ public class Data extends AppCompatActivity {
                 });
     }
 
-    protected void hashData(FirebaseFirestore db,String coll,String doc,String pac,String address,String phone){
+    protected void hashData(FirebaseFirestore db,String coll,String doc,String pac,String address,String phone,String randomKey){
         DocumentReference extract = db.collection(coll).document(doc);
         extract.get().addOnSuccessListener(new OnSuccessListener<DocumentSnapshot>() {
             @Override
@@ -211,7 +211,7 @@ public class Data extends AppCompatActivity {
                     pack.put("Order",data);
                     pack.put("Address",address);
                     pack.put("Phone",phone);
-                    setDoc(db,pac,doc,pack);
+                    setDoc(db,randomKey,doc,pack);
                     HashMap<String,Object> empty = new HashMap<>();
                     delAllFields(db,"cart",doc,empty);
                 }

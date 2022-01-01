@@ -9,6 +9,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.HashMap;
 
 public class Pay extends AppCompatActivity {
@@ -51,7 +53,15 @@ public class Pay extends AppCompatActivity {
         System.out.println("Claas Pay: "+ address + " "+ phone);
         String cart = "cart";
         String pac = "package";
-        d.hashData(db,cart, clientName,pac,address,phone);
+        String saveCurrentDate, saveCurrentTime;
+        Calendar calendar=Calendar.getInstance();
+        SimpleDateFormat currentDate= new SimpleDateFormat("MMM dd, yyyy");
+        saveCurrentDate=currentDate.format(calendar.getTime());
+        SimpleDateFormat currentTime= new SimpleDateFormat("HH:mm:ss a");
+        saveCurrentTime=currentTime.format(calendar.getTime());
+        String randomKey=saveCurrentDate+saveCurrentTime;
+
+        d.hashData(db,cart, clientName,pac,address,phone, randomKey);
         HashMap<String,Object> prod = new HashMap<>();
         String ad = "";
         ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice;

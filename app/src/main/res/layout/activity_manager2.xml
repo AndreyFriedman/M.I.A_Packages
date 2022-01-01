@@ -18,8 +18,19 @@
         app:layout_constraintTop_toTopOf="parent" />
 
 
-<!--    ////////////////////////////////////////////////////////////////////////////-->
+    <!--    ////////////////////////////////////////////////////////////////////////////-->
 
+
+    <Button
+        android:layout_width="100dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="40dp"
+        android:onClick="addp"
+        android:text="add product"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <EditText
         android:id="@+id/editTextName"
