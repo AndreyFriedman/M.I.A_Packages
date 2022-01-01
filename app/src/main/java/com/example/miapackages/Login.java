@@ -158,18 +158,18 @@ public class Login extends AppCompatActivity {
         }
     }
     public void loginFailure(){
-        if (typeUser.equals("client")) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            password.setError("Maybe you need to register?");
-        }
-        if (typeUser.equals("driver")) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            password.setError("Probably manager mistake");
-        }
-        if (typeUser.equals("manager")) {
-            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-            password.setError("You sure that you manager?");
-        }
+//        if (typeUser.equals("client")) {
+//            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            password.setError("Maybe you need to register?");
+//        }
+//        if (typeUser.equals("driver")) {
+//            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            password.setError("Probably manager mistake");
+//        }
+//        if (typeUser.equals("manager")) {
+//            System.out.println("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//            password.setError("You sure that you manager?");
+//        }
     }
 
     public String getClintName(){

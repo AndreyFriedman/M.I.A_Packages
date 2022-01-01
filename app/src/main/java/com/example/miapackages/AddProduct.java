@@ -27,14 +27,14 @@ public class AddProduct extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_product);
-        inputImage=(ImageView)findViewById(R.id.product_image);
-        inputImage.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v)
-            {
-                openGallery();
-            }
-        });
+//        inputImage=(ImageView)findViewById(R.id.product_image);
+//        inputImage.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                openGallery();
+//            }
+//        });
     }
 
     private void openGallery()
