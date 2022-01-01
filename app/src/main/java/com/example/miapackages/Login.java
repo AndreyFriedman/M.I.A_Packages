@@ -153,6 +153,7 @@ public class Login extends AppCompatActivity {
         }
         if (typeUser.equals("manager")) {
             Intent intent = new Intent(this, Manager.class);
+            intent.putExtra("mannagerName",userString);
             startActivity(intent);
         }
     }

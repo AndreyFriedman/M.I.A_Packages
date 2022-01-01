@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".AddProduct"
-    android:background="@drawable/registerbackground">
+    android:background="@drawable/food_boxes">
 
     <ImageView
         android:id="@+id/product_image"
@@ -71,7 +71,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:onClick="itemClick"
-        android:text="add new item or change existing one"
+        android:text="Add product + "
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

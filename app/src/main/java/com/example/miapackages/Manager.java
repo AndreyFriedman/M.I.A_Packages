@@ -20,12 +20,15 @@ import java.util.Map;
 public class Manager extends Activity implements AdapterView.OnItemSelectedListener {
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
+    String mannagerName;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_manager2);
-
+        Intent intent = getIntent();
+        mannagerName = intent.getStringExtra("mannagerName");
+        TextView name=(TextView)findViewById(R.id.name);
+        name.setText("Welcome "+mannagerName);
         Spinner manager_options = (Spinner) findViewById(R.id.spinner);
         manager_options.setOnItemSelectedListener(this);
     }
@@ -42,11 +45,11 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         Spinner manager_options = (Spinner) findViewById(R.id.spinner);
         String opt = String.valueOf(manager_options.getSelectedItem());
 
-        TextView editTextName = (TextView) findViewById(R.id.editTextName);
-        TextView editTextAmount = (TextView) findViewById(R.id.editTextAmount);
-        TextView editTextPrice = (TextView) findViewById(R.id.editTextPrice);
-        TextView editTextSupplier = (TextView) findViewById(R.id.editTextSupplier);
-        Button add_product = (Button) findViewById(R.id.add_product);
+//        TextView editTextName = (TextView) findViewById(R.id.editTextName);
+//        TextView editTextAmount = (TextView) findViewById(R.id.editTextAmount);
+//        TextView editTextPrice = (TextView) findViewById(R.id.editTextPrice);
+//        TextView editTextSupplier = (TextView) findViewById(R.id.editTextSupplier);
+//        Button add_product = (Button) findViewById(R.id.add_product);
 
         TextView editTextNameDel = (TextView) findViewById(R.id.editTextNameDel);
         Button delete_product = (Button) findViewById(R.id.delete_product);
@@ -58,27 +61,27 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
         TextView delete_driver_name = (TextView) findViewById(R.id.delete_driver_name);
         Button delete_driver = (Button) findViewById(R.id.delete_driver);
 
+//        if (id == 0){
+//
+//            editTextName.setVisibility(View.VISIBLE);
+//            editTextAmount.setVisibility(View.VISIBLE);
+//            editTextPrice.setVisibility(View.VISIBLE);
+//            editTextSupplier.setVisibility(View.VISIBLE);
+//            add_product.setVisibility(View.VISIBLE);
+//            editTextNameDel.setVisibility(View.INVISIBLE);
+//            delete_product.setVisibility(View.INVISIBLE);
+//            driver_name.setVisibility(View.INVISIBLE);
+//            driver_password.setVisibility(View.INVISIBLE);
+//            add_driver.setVisibility(View.INVISIBLE);
+//            delete_driver_name.setVisibility(View.INVISIBLE);
+//            delete_driver.setVisibility(View.INVISIBLE);
+//        }
         if (id == 0){
-
-            editTextName.setVisibility(View.VISIBLE);
-            editTextAmount.setVisibility(View.VISIBLE);
-            editTextPrice.setVisibility(View.VISIBLE);
-            editTextSupplier.setVisibility(View.VISIBLE);
-            add_product.setVisibility(View.VISIBLE);
-            editTextNameDel.setVisibility(View.INVISIBLE);
-            delete_product.setVisibility(View.INVISIBLE);
-            driver_name.setVisibility(View.INVISIBLE);
-            driver_password.setVisibility(View.INVISIBLE);
-            add_driver.setVisibility(View.INVISIBLE);
-            delete_driver_name.setVisibility(View.INVISIBLE);
-            delete_driver.setVisibility(View.INVISIBLE);
-        }
-        if (id == 1){
-            editTextName.setVisibility(View.INVISIBLE);
-            editTextAmount.setVisibility(View.INVISIBLE);
-            editTextPrice.setVisibility(View.INVISIBLE);
-            editTextSupplier.setVisibility(View.INVISIBLE);
-            add_product.setVisibility(View.INVISIBLE);
+//            editTextName.setVisibility(View.INVISIBLE);
+//            editTextAmount.setVisibility(View.INVISIBLE);
+//            editTextPrice.setVisibility(View.INVISIBLE);
+//            editTextSupplier.setVisibility(View.INVISIBLE);
+//            add_product.setVisibility(View.INVISIBLE);
             editTextNameDel.setVisibility(View.VISIBLE);
             delete_product.setVisibility(View.VISIBLE);
             driver_name.setVisibility(View.INVISIBLE);
@@ -87,12 +90,12 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
             delete_driver_name.setVisibility(View.INVISIBLE);
             delete_driver.setVisibility(View.INVISIBLE);
         }
-        if (id == 2){
-            editTextName.setVisibility(View.INVISIBLE);
-            editTextAmount.setVisibility(View.INVISIBLE);
-            editTextPrice.setVisibility(View.INVISIBLE);
-            editTextSupplier.setVisibility(View.INVISIBLE);
-            add_product.setVisibility(View.INVISIBLE);
+        if (id == 1){
+//            editTextName.setVisibility(View.INVISIBLE);
+//            editTextAmount.setVisibility(View.INVISIBLE);
+//            editTextPrice.setVisibility(View.INVISIBLE);
+//            editTextSupplier.setVisibility(View.INVISIBLE);
+//            add_product.setVisibility(View.INVISIBLE);
             editTextNameDel.setVisibility(View.INVISIBLE);
             delete_product.setVisibility(View.INVISIBLE);
             driver_name.setVisibility(View.VISIBLE);
@@ -101,12 +104,12 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
             delete_driver_name.setVisibility(View.INVISIBLE);
             delete_driver.setVisibility(View.INVISIBLE);
         }
-        if (id == 3){
-            editTextName.setVisibility(View.INVISIBLE);
-            editTextAmount.setVisibility(View.INVISIBLE);
-            editTextPrice.setVisibility(View.INVISIBLE);
-            editTextSupplier.setVisibility(View.INVISIBLE);
-            add_product.setVisibility(View.INVISIBLE);
+        if (id == 2){
+//            editTextName.setVisibility(View.INVISIBLE);
+//            editTextAmount.setVisibility(View.INVISIBLE);
+//            editTextPrice.setVisibility(View.INVISIBLE);
+//            editTextSupplier.setVisibility(View.INVISIBLE);
+//            add_product.setVisibility(View.INVISIBLE);
             editTextNameDel.setVisibility(View.INVISIBLE);
             delete_product.setVisibility(View.INVISIBLE);
             driver_name.setVisibility(View.INVISIBLE);
@@ -122,39 +125,39 @@ public class Manager extends Activity implements AdapterView.OnItemSelectedListe
 
     }
 
-    public void itemClick(View view){
-        int amountS = 0;
-        int priceS = 0;
-        String nameS = "abc";
-        String supplierS = "abc";
-
-        EditText name = (EditText)findViewById(R.id.editTextName);
-        CharSequence str1 = name.getText().toString();
-        if (TextUtils.isEmpty(str1) != true)
-            nameS = name.getText().toString();
-
-        EditText amount = (EditText)findViewById(R.id.editTextAmount);
-        CharSequence str2 = amount.getText().toString();
-        if (TextUtils.isEmpty(str2) != true)
-            amountS = Integer.valueOf(amount.getText().toString());
-
-        EditText price = (EditText)findViewById(R.id.editTextPrice);
-        CharSequence str3 = price.getText().toString();
-        if (TextUtils.isEmpty(str3) != true)
-            priceS = Integer.valueOf(price.getText().toString());
-
-        EditText supplier = (EditText)findViewById(R.id.editTextSupplier);
-        CharSequence str4 = supplier.getText().toString();
-        if (TextUtils.isEmpty(str4) != true)
-            supplierS = supplier.getText().toString();
-
-        else {
-            TextView err = (TextView) findViewById(R.id.err);
-            err.setVisibility(View.VISIBLE);
-            return;
-        }
-        d.addDocItem(db, nameS, amountS, priceS, supplierS);
-    }
+//    public void itemClick(View view){
+//        int amountS = 0;
+//        int priceS = 0;
+//        String nameS = "abc";
+//        String supplierS = "abc";
+//
+//        EditText name = (EditText)findViewById(R.id.editTextName);
+//        CharSequence str1 = name.getText().toString();
+//        if (TextUtils.isEmpty(str1) != true)
+//            nameS = name.getText().toString();
+//
+//        EditText amount = (EditText)findViewById(R.id.editTextAmount);
+//        CharSequence str2 = amount.getText().toString();
+//        if (TextUtils.isEmpty(str2) != true)
+//            amountS = Integer.valueOf(amount.getText().toString());
+//
+//        EditText price = (EditText)findViewById(R.id.editTextPrice);
+//        CharSequence str3 = price.getText().toString();
+//        if (TextUtils.isEmpty(str3) != true)
+//            priceS = Integer.valueOf(price.getText().toString());
+//
+//        EditText supplier = (EditText)findViewById(R.id.editTextSupplier);
+//        CharSequence str4 = supplier.getText().toString();
+//        if (TextUtils.isEmpty(str4) != true)
+//            supplierS = supplier.getText().toString();
+//
+//        else {
+//            TextView err = (TextView) findViewById(R.id.err);
+//            err.setVisibility(View.VISIBLE);
+//            return;
+//        }
+//        d.addDocItem(db, nameS, amountS, priceS, supplierS);
+//    }
 
     public void deleteClick(View view){
         String nameS = "";
