@@ -1,5 +1,8 @@
 package com.example.miapackages;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -22,6 +25,9 @@ import java.util.Map;
 public class Data extends AppCompatActivity {
     //HashMap<String,Object> userData = new HashMap<>();
     int numOfPac = 0;
+    private Context controller;
+
+    public void setController(Context cnts){ this.controller = cnts;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +96,11 @@ public class Data extends AppCompatActivity {
                         else {
                             pr = document.getData().get(name).toString();
                             int amountStart = pr.indexOf("amount=") + 7;
-                            int amountEnd = pr.indexOf(", supplier");
+                            int amountEnd = pr.indexOf(", price");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", totPrice");
+                            int priceEnd = pr.indexOf(", supplier");
                             int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", price");
+                            int supplierEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
                             if (mazav == 1){
@@ -239,5 +245,11 @@ public class Data extends AppCompatActivity {
                 Toast.makeText(Data.this, "Error!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void sendSMS (String phone){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", phone, null));
+        intent.putExtra("sms_body", "Hello Dear...");
+        controller.startActivity(intent);
     }
 }

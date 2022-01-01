@@ -11,7 +11,6 @@ import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
-import java.util.HashMap;
 
 public class Pay extends AppCompatActivity {
     String clientName;
@@ -19,6 +18,7 @@ public class Pay extends AppCompatActivity {
     Data d = new Data();
     String address;
     String phone;
+    String items;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
 
 
@@ -39,6 +39,7 @@ public class Pay extends AppCompatActivity {
     }
     public void onPay(View view) {
         payData();
+
         Intent intent = new Intent(this, Client.class);
         intent.putExtra("clientName",clientName);
         intent.putExtra("Address",address);
@@ -62,10 +63,8 @@ public class Pay extends AppCompatActivity {
         String randomKey=saveCurrentDate+saveCurrentTime;
 
         d.hashData(db,cart, clientName,pac,address,phone, randomKey);
-        HashMap<String,Object> prod = new HashMap<>();
-        String ad = "";
-        ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice;
-        prod.put("ad",ad);
-        d.setDoc(db,"history","123",prod);
+
+
+
     }
 }
