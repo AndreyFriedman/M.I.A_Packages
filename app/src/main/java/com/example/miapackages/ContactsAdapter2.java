@@ -1,7 +1,8 @@
 package com.example.miapackages;
-
-
 import android.content.Context;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +19,8 @@ import java.util.List;
 class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2> {
     Data d = new Data();
     FirebaseFirestore db = FirebaseFirestore.getInstance();
+    private static final int MY_PERMISSIONS_REQUEST_SEND_SMS = 1;
+
 
 
 
@@ -29,17 +32,21 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         // for any view that will be set as you render a row
         public TextView phoneT,addressT,itemT, amountT;
         public Button messageButton;
+        private Context context;
+
 
         // We also create a constructor that accepts the entire item row
         // and does the view lookups to find each subview
-        public ViewHolder2(View itemView) {
+        public ViewHolder2(View itemView, Context context) {
             // Stores the itemView in a public final member variable that can be used
             // to access the context from any ViewHolder instance.
+
             super(itemView);
             this.phoneT = itemView.findViewById(R.id.phone_num);
             this.addressT = itemView.findViewById(R.id.address);
             this.itemT = itemView.findViewById(R.id.items);
             this.amountT = itemView.findViewById(R.id.amount);
+            this.context = context;
 
             itemView.setOnClickListener(this);
         }
@@ -59,7 +66,10 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
             this.itemT = itemView.findViewById(R.id.item_supp);
             this.amountT = itemView.findViewById(R.id.message_button);
 
-
+            Uri uri = Uri.parse("smsto:"+phone);
+            Intent intent = new Intent(Intent.ACTION_SENDTO, uri);
+            intent.putExtra("sms_body", "Your order is waiting for you outside your door");
+            context.startActivity(intent);
 
             d.delDoc(db,"package",id);
 
@@ -69,6 +79,8 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
     private List<Order> orders;
     private int mazav;
     private String clientName;
+
+
 
     // Pass in the contact array into the constructor
     public ContactsAdapter2(ArrayList<Order> contacts, int i, String clientNameTemp) {
@@ -86,7 +98,7 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
         View contactView = inflater.inflate(R.layout.orders, parent, false);
 
         // Return a new holder instance
-        ViewHolder2 viewHolder2 = new ViewHolder2(contactView);
+        ViewHolder2 viewHolder2 = new ViewHolder2(contactView,context);
         return viewHolder2;
     }
 
@@ -115,4 +127,6 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
     public int getItemCount() {
         return orders.size();
     }
+
+
 }

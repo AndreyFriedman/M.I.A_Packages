@@ -1,6 +1,7 @@
 package com.example.miapackages;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -123,8 +124,13 @@ public class Cart extends AppCompatActivity {
         intent.putExtra("clientName",clientName);
         intent.putExtra("Address",address);
         intent.putExtra("Phone",phone);
-
         intent.putExtra("tot",totPriceAll);
+        startActivity(intent);
+    }
+
+    public void sendSMS (String phone){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", phone, null));
+        intent.putExtra("sms_body", "Hello Dear...");
         startActivity(intent);
     }
 

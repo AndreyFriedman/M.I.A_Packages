@@ -1,5 +1,8 @@
 package com.example.miapackages;
 
+import android.content.Context;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.widget.Toast;
@@ -22,6 +25,9 @@ import java.util.Map;
 public class Data extends AppCompatActivity {
     //HashMap<String,Object> userData = new HashMap<>();
     int numOfPac = 0;
+    private Context controller;
+
+    public void setController(Context cnts){ this.controller = cnts;}
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -241,5 +247,11 @@ public class Data extends AppCompatActivity {
                 Toast.makeText(Data.this, "Error!", Toast.LENGTH_SHORT).show();
             }
         });
+    }
+
+    public void sendSMS (String phone){
+        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", phone, null));
+        intent.putExtra("sms_body", "Hello Dear...");
+        controller.startActivity(intent);
     }
 }
