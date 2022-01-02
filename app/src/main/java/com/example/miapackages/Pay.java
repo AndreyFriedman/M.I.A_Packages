@@ -41,10 +41,11 @@ public class Pay extends AppCompatActivity {
         phone = intent.getStringExtra("Phone");
         notificationManager = NotificationManagerCompat.from(this);
         //createNotificationChannel();
-
+        TextView hello=(TextView)findViewById(R.id.hello_name);
+        hello.setText(clientName+" we almost finished");
         TextView priceRep = (TextView) findViewById(R.id.totalPay);
         String pr = String.valueOf(totPrice);
-        priceRep.setText(pr);
+        priceRep.setText("Your total is "+pr);
 
     }
     public void onPay(View view) {
