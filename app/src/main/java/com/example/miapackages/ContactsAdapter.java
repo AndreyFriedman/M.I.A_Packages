@@ -41,7 +41,7 @@ class ContactsAdapter extends
             this.nameT = itemView.findViewById(R.id.item_name);
             this.amountT = itemView.findViewById(R.id.item_amount);
             this.priceT = itemView.findViewById(R.id.item_price);
-            this.suppT = itemView.findViewById(R.id.item_supp);
+            this.suppT = itemView.findViewById(R.id.item_desc);
             this.message_buttonT = itemView.findViewById(R.id.message_button);
 
             itemView.setOnClickListener(this);
@@ -66,17 +66,17 @@ class ContactsAdapter extends
                     Map<String, Object> m = new HashMap<>();
                     m.put("amount", amm);
                     m.put("price", price);
-                    m.put("supplier", items.get(position).getSupplier());
+                    m.put("description", items.get(position).getDescription());
                     System.out.println("addddd item");
                     d.setDoc(db, "items", name, m);
-                    d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 1);
+                    d.addDocCart(db, clientName, name, price, items.get(position).getDescription(), 1);
                 } else {
                     System.out.println("there is no more items");
 
                     Map<String, Object> m = new HashMap<>();
                     m.put("amount", amm);
                     m.put("price", price);
-                    m.put("supplier", items.get(position).getSupplier());
+                    m.put("description", items.get(position).getDescription());
 
                     d.setDoc(db, "items", name, m);
                 }
@@ -90,10 +90,10 @@ class ContactsAdapter extends
                 Map<String, Object> m = new HashMap<>();
                 m.put("amount", amm);
                 m.put("price", price);
-                m.put("supplier", items.get(position).getSupplier());
+                m.put("description", items.get(position).getDescription());
 
-                d.addDocItem(db,name,1,price,items.get(position).getSupplier());
-                d.addDocCart(db, clientName, name, price, items.get(position).getSupplier(), 2);
+                d.addDocItem(db,name,1,price,items.get(position).getDescription());
+                d.addDocCart(db, clientName, name, price, items.get(position).getDescription(), 2);
             }
 
         }
@@ -138,7 +138,7 @@ class ContactsAdapter extends
         name.setText(contact.getName());
         amount.setText(Integer.toString(contact.getAmount()));
         price.setText(Integer.toString(contact.getPrice()));
-        supp.setText(contact.getSupplier());
+        supp.setText(contact.getDescription());
         if (mazav == 2)
             tot.setText(Integer.toString(contact.getTotAmount()));
     }

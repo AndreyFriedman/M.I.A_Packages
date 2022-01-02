@@ -47,17 +47,17 @@ public class Data extends AppCompatActivity {
                         System.out.println("DocumentSnapshot data: " + document.getData());
                         prod.put("amount", (int) ((Long)document.get("amount") + amount));
 //                        prod.put("price", price);
-//                        prod.put("supplier", supp);
+//                        prod.put("description", supp);
 //                        setDoc(db,"items",name,prod);
                     } else {
                         System.out.println("No such document");
                         prod.put("amount", amount);
 //                        prod.put("price", price);
-//                        prod.put("supplier", supp);
+//                        prod.put("description", supp);
 //                        setDoc(db,"items",name,prod);
                     }
                     prod.put("price", price);
-                    prod.put("supplier", supp);
+                    prod.put("description", supp);
                     setDoc(db,"items",name,prod);
                 } else {
                     System.out.println( "get failed with " + task.getException());
@@ -66,7 +66,7 @@ public class Data extends AppCompatActivity {
         });
     }
 
-    protected void addDocCart(FirebaseFirestore db, String userName, String name, int price, String supplier, int mazav){
+    protected void addDocCart(FirebaseFirestore db, String userName, String name, int price, String description, int mazav){
 
         DocumentReference docRef = db.collection("cart").document(userName);
         docRef.get().addOnCompleteListener(new OnCompleteListener<DocumentSnapshot>() {
@@ -88,7 +88,7 @@ public class Data extends AppCompatActivity {
                         if(document.getData().get(name) == null){
                             prod.put("amount", 1);
                             prod.put("price", price);
-                            prod.put("supplier", supplier);
+                            prod.put("description", description);
                             prod.put("totPrice", price);
                         }
                         else {
@@ -100,21 +100,21 @@ public class Data extends AppCompatActivity {
                             int amountStart = pr.indexOf("amount=") + 7;
                             int amountEnd = pr.indexOf(", price");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", supplier");
-                            int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", totPrice");
+                            int priceEnd = pr.indexOf(", description");
+                            int descriptionStart = pr.indexOf("description=") + 12;
+                            int descriptionEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
                             if (mazav == 1){
                                 prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) + 1);
                                 prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
-                                prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
+                                prod.put("description", (pr.substring(descriptionStart, descriptionEnd)));
                                 prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) + Integer.parseInt(pr.substring(priceStart, priceEnd)));
                             }
                             if (mazav == 2){
                                 prod.put("amount", Integer.parseInt(pr.substring(amountStart, amountEnd)) - 1);
                                 prod.put("price", Integer.parseInt(pr.substring(priceStart, priceEnd)));
-                                prod.put("supplier", (pr.substring(supplierStart, supplierEnd)));
+                                prod.put("description", (pr.substring(descriptionStart, descriptionEnd)));
                                 prod.put("totPrice", Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)) - Integer.parseInt(pr.substring(priceStart, priceEnd)));
 
                             }

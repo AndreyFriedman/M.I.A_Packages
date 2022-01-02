@@ -14,6 +14,7 @@ import androidx.core.app.NotificationManagerCompat;
 
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,8 +28,8 @@ public class Pay extends AppCompatActivity {
     Data d = new Data();
     String address;
     String phone;
+    ArrayList<Item> items;
     FirebaseFirestore db = FirebaseFirestore.getInstance();
-
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +40,8 @@ public class Pay extends AppCompatActivity {
         totPrice = intent.getIntExtra("tot",0);
         address = intent.getStringExtra("Address");
         phone = intent.getStringExtra("Phone");
+        items = this.getIntent().getExtras().getParcelableArrayList("items");
+
         notificationManager = NotificationManagerCompat.from(this);
         //createNotificationChannel();
         TextView hello=(TextView)findViewById(R.id.hello_name);
@@ -51,11 +54,11 @@ public class Pay extends AppCompatActivity {
     public void onPay(View view) {
         sendOnChannel1();
         payData();
-//        Intent intent = new Intent(this, Client.class);
-//        intent.putExtra("clientName",clientName);
-//        intent.putExtra("Address",address);
-//        intent.putExtra("Phone",phone);
-//        startActivity(intent);
+        Intent intent = new Intent(this, Client.class);
+        intent.putExtra("clientName",clientName);
+        intent.putExtra("Address",address);
+        intent.putExtra("Phone",phone);
+        startActivity(intent);
     }
     protected void payData(){
         System.out.println("1!1!1!! "+clientName);
@@ -83,8 +86,9 @@ public class Pay extends AppCompatActivity {
         d.hashData(db,cart, clientName,pac,address,phone, randomKey);
         HashMap<String,Object> prod = new HashMap<>();
         String ad = "";
-        ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice;
-        prod.put("ad",ad);
+        ad = ad + clientName + ", " + address + ", " + phone + ", " + totPrice ;
+        prod.put("info",ad);
+        prod.put("order",items);
         d.setDoc(db,"history",id,prod);
 
 

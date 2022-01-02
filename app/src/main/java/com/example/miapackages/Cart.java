@@ -1,7 +1,6 @@
 package com.example.miapackages;
 
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
@@ -81,9 +80,9 @@ public class Cart extends AppCompatActivity {
                             int amountStart = pr.indexOf("amount=") + 7;
                             int amountEnd = pr.indexOf(", price");
                             int priceStart = pr.indexOf("price=") + 6;
-                            int priceEnd = pr.indexOf(", supplier");
-                            int supplierStart = pr.indexOf("supplier=") + 9;
-                            int supplierEnd = pr.indexOf(", totPrice");
+                            int priceEnd = pr.indexOf(", description");
+                            int descriptionStart = pr.indexOf("description=") + 12;
+                            int descriptionEnd = pr.indexOf(", totPrice");
                             int totPriceStart = pr.indexOf("totPrice=") + 9;
                             int totPriceEnd = pr.indexOf("}");
 
@@ -91,12 +90,12 @@ public class Cart extends AppCompatActivity {
 //                                    System.out.println(maps.toString());
 //                                    System.out.println(maps.get(key).toString());
 //                                    System.out.println(key);
-//                                    System.out.println((pr.substring(supplierStart, supplierEnd)));
+//                                    System.out.println((pr.substring(descriptionStart, descriptionEnd)));
 //                                    System.out.println(Integer.parseInt(pr.substring(priceStart, priceEnd)));
 //                                    System.out.println(Integer.parseInt(pr.substring(amountStart, amountEnd)));
 //                                    System.out.println(Integer.parseInt(pr.substring(totPriceStart, totPriceEnd)));
                             int pp=Integer.parseInt(pr.substring(priceStart, priceEnd));
-                            items.add(new Item(key,(pr.substring(supplierStart, supplierEnd)),pp, Integer.parseInt(pr.substring(amountStart, amountEnd)),Integer.parseInt(pr.substring(totPriceStart, totPriceEnd))));
+                            items.add(new Item(key,(pr.substring(descriptionStart, descriptionEnd)),pp, Integer.parseInt(pr.substring(amountStart, amountEnd)),Integer.parseInt(pr.substring(totPriceStart, totPriceEnd))));
                             System.out.println("__________________________________________________________");
                             totPriceAll += Integer.parseInt(pr.substring(totPriceStart, totPriceEnd));
                         });
@@ -125,13 +124,14 @@ public class Cart extends AppCompatActivity {
         intent.putExtra("Address",address);
         intent.putExtra("Phone",phone);
         intent.putExtra("tot",totPriceAll);
+
+        Bundle bundle = new Bundle();
+        bundle.putParcelableArrayList("items", items);
+        intent.putExtras(bundle);
+
         startActivity(intent);
     }
 
-    public void sendSMS (String phone){
-        Intent intent = new Intent(Intent.ACTION_VIEW, Uri.fromParts("sms", phone, null));
-        intent.putExtra("sms_body", "Hello Dear...");
-        startActivity(intent);
-    }
+
 
 }

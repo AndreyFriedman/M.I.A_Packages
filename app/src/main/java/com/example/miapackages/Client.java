@@ -59,7 +59,7 @@ public class Client extends AppCompatActivity {
                         if (task.isSuccessful()) {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 System.out.println(document.getId() + " => " + document.getData());
-                                items.add(new Item(document.getId(), (String) document.get("supplier"), (int) ((Long) document.get("price") + 0), (int) ((Long) document.get("amount") + 0)));
+                                items.add(new Item(document.getId(), (String) document.get("description"), (int) ((Long) document.get("price") + 0), (int) ((Long) document.get("amount") + 0)));
                             }
                             onCreate2(items);
                         } else {

@@ -16,9 +16,6 @@
             android:name=".AddProduct"
             android:exported="false" />
         <activity
-            android:name=".CartBoard"
-            android:exported="false" />
-        <activity
             android:name=".Data"
             android:exported="false" />
         <activity

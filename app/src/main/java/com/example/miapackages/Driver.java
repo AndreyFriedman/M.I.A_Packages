@@ -2,7 +2,6 @@ package com.example.miapackages;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -117,11 +116,4 @@ public class Driver extends AppCompatActivity {
         return orders;
     }
 
-    public void onCartBoard(View view){
-        Intent intent = new Intent(this, CartBoard.class);
-        //intent.putExtra("clientName",clientName);
-        //intent.putExtra("Address",address);
-        //intent.putExtra("Phone",phone);
-        startActivity(intent);
-    }
 }

@@ -54,12 +54,12 @@
         tools:ignore="MissingConstraints" />
 
     <EditText
-        android:id="@+id/product_supplier"
+        android:id="@+id/product_description"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:ems="10"
-        android:hint="enter product supplier"
+        android:hint="enter product description"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/product_price"
@@ -75,6 +75,6 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/product_supplier" />
+        app:layout_constraintTop_toBottomOf="@+id/product_description" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

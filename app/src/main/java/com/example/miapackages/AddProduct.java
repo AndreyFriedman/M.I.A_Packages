@@ -1,8 +1,5 @@
 package com.example.miapackages;
 
-import androidx.annotation.Nullable;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -13,9 +10,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.firestore.FirebaseFirestore;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 
-import io.grpc.Context;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class AddProduct extends AppCompatActivity {
 
@@ -62,7 +60,7 @@ public class AddProduct extends AppCompatActivity {
         int amountS = 0;
         int priceS = 0;
         String nameS = "abc";
-        String supplierS = "abc";
+        String descriptionS = "abc";
         if(imageUri==null)
         {
             Toast.makeText(this,"product image is menadtory",Toast.LENGTH_SHORT).show();
@@ -82,10 +80,10 @@ public class AddProduct extends AppCompatActivity {
         if (TextUtils.isEmpty(str3) != true)
             priceS = Integer.valueOf(price.getText().toString());
 
-        EditText supplier = (EditText)findViewById(R.id.product_supplier);
-        CharSequence str4 = supplier.getText().toString();
+        EditText description = (EditText)findViewById(R.id.product_description);
+        CharSequence str4 = description.getText().toString();
         if (TextUtils.isEmpty(str4) != true)
-            supplierS = supplier.getText().toString();
+            descriptionS = description.getText().toString();
 
         else {
             TextView err = (TextView) findViewById(R.id.err);
@@ -93,6 +91,6 @@ public class AddProduct extends AppCompatActivity {
             return;
         }
 
-        d.addDocItem(db, nameS, amountS, priceS, supplierS);
+        d.addDocItem(db, nameS, amountS, priceS, descriptionS);
     }
 }

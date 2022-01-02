@@ -63,7 +63,7 @@ class ContactsAdapter2 extends RecyclerView.Adapter<ContactsAdapter2.ViewHolder2
 
             this.phoneT = itemView.findViewById(R.id.item_amount);
             this.addressT = itemView.findViewById(R.id.item_price);
-            this.itemT = itemView.findViewById(R.id.item_supp);
+            this.itemT = itemView.findViewById(R.id.item_desc);
             this.amountT = itemView.findViewById(R.id.message_button);
 
             Uri uri = Uri.parse("smsto:"+phone);
