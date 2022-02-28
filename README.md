@@ -1,6 +1,6 @@
 # M.I.A_Packages
 
-android applications about sending packages from stores with 3 types of users
+android applications about sending packages from stores (like 10bis and Wolt) with 3 types of users
 
 manager - can add products to list and manage them
 
